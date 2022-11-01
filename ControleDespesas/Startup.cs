@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using ControleDespesas.Database;
+using ControleDespesas.Repositories;
 
 namespace ControleDespesas
 {
@@ -24,6 +28,19 @@ namespace ControleDespesas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            #region Repositórios
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+           
+            #endregion
+
+            #region Configuração do banco de dados
+
+            services.AddDbContext<ControleDespesasContext>(options => options.UseSqlServer(Configuration.GetValue<string>("DatabaseConnectionString")));
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

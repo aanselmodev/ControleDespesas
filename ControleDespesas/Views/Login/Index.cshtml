@@ -4,7 +4,7 @@
 
 
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <input type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Home")'" value="Voltar">
+    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Voltar</a>
 </header>
 
 <div class="text-center">
@@ -31,10 +31,10 @@
                     <input type="checkbox" value="remember-me"> Lembrar-me
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+            <button class="w-100 btn btn-lg btn-secondary" type="submit">Entrar</button>
             <br />
             <br />
-            <input type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Cadastro")'" value="Não é cadastrado?">
+            <a asp-action="Index" asp-controller="Cadastrar" class="btn btn-secondary">Não é cadastrado?</a>
         </form>
 
     </main>
