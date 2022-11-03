@@ -61,7 +61,7 @@ namespace ControleDespesas.Libraries.Mensagens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O campo {0} é de preenchimento obrigatório!.
+        ///   Looks up a localized string similar to O campo &apos;{0}&apos; é de preenchimento obrigatório!.
         /// </summary>
         public static string MSG_E001 {
             get {
@@ -70,7 +70,7 @@ namespace ControleDespesas.Libraries.Mensagens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O valor do campo {0} é inválido!.
+        ///   Looks up a localized string similar to O valor do campo &apos;{0}&apos; é inválido!.
         /// </summary>
         public static string MSG_E002 {
             get {
@@ -79,7 +79,7 @@ namespace ControleDespesas.Libraries.Mensagens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O campo {0} deve ter no máximo {1} caracteres!.
+        ///   Looks up a localized string similar to O campo &apos;{0}&apos; deve ter no máximo &apos;{1}&apos; caracteres!.
         /// </summary>
         public static string MSG_E003 {
             get {
@@ -88,7 +88,7 @@ namespace ControleDespesas.Libraries.Mensagens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O campo {0} deve ter no mínimo {1} caracteres!.
+        ///   Looks up a localized string similar to O campo &apos;{0}&apos; deve ter no mínimo &apos;{1}&apos; caracteres!.
         /// </summary>
         public static string MSG_E004 {
             get {
@@ -97,7 +97,7 @@ namespace ControleDespesas.Libraries.Mensagens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O valor do campo {0} não é igual ao valor do campo {1}!.
+        ///   Looks up a localized string similar to O valor do campo &apos;{0}&apos; não é igual ao valor do campo &apos;{1}&apos;!.
         /// </summary>
         public static string MSG_E005 {
             get {
