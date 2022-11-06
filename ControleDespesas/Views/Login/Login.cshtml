@@ -16,7 +16,7 @@
     <main>
         <div class="row">
             <form method="post">
-                <p class=" mb-3 fw-normal">Por favor, faça login</p>
+                <h4 class=" mb-3 fw-normal">Por favor, faça login</h4>
 
                 <div class="col-sm-4 p-2">
                     <label asp-for="Email" class="form-label d-flex">E-mail</label>
@@ -29,7 +29,10 @@
                     <input type="password" class="form-control" asp-for="Senha" placeholder="*********">
                     <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
-
+                <div class="col-sm-4">
+                    @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
+                </div>
+                
                 <hr class="my-4" />
                 <button class="btn btn-secondary col-sm-2 p-2" type="submit">Entrar</button>
                 <br />

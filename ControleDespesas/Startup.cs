@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using ControleDespesas.Database;
 using ControleDespesas.Repositories;
+using ControleDespesas.Libraries.Sessoes;
+using ControleDespesas.Libraries.Login;
 
 namespace ControleDespesas
 {
@@ -29,14 +31,25 @@ namespace ControleDespesas
         {
             services.AddControllersWithViews();
 
+            #region Sessão
+
+            services.AddMemoryCache();
+            services.AddSession(options => {
+                options.Cookie.IsEssential = true;   
+            });
+
+            #endregion
+
             #region Repositórios
 
             services.AddHttpContextAccessor();
+            services.AddScoped<Sessao>();
+            services.AddScoped<LoginUsuario>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
            
             #endregion
 
-            #region Configuração do banco de dados
+            #region Banco de dados
 
             services.AddDbContext<ControleDespesasContext>(options => options.UseSqlServer(Configuration.GetValue<string>("DatabaseConnectionString")));
 
@@ -62,6 +75,8 @@ namespace ControleDespesas
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

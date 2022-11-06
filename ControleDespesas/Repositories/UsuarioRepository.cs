@@ -17,9 +17,10 @@ namespace ControleDespesas.Repositories
             _banco = banco;
         }
 
-        public void Atualizar(int id)
+        public void Atualizar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            _banco.Update(usuario);
+            _banco.SaveChanges();
         }
 
         public void Cadastrar(Usuario usuario)
@@ -28,14 +29,21 @@ namespace ControleDespesas.Repositories
             _banco.SaveChanges();
         }
 
-        public void Consultar(int id)
+        public Usuario Consultar(int id)
         {
-            throw new NotImplementedException();
+           return _banco.Usuarios.Find(id);
         }
 
         public void Excluir(int id)
         {
-            throw new NotImplementedException();
+            Usuario usuario = Consultar(id);
+            _banco.Remove(usuario);
+            _banco.SaveChanges();
+        }
+
+        public Usuario Login(string email, string senha)
+        {
+            return _banco.Usuarios.Where(u => u.Email == email && u.Senha == senha).FirstOrDefault();
         }
     }
 }

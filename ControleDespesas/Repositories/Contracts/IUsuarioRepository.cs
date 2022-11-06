@@ -9,9 +9,10 @@ namespace ControleDespesas.Repositories
     public interface IUsuarioRepository
     {
         public void Cadastrar(Usuario usuario);
-        public void Consultar(int id);
-        public void Atualizar(int id);
+        public Usuario Consultar(int id);
+        public void Atualizar(Usuario usuario);
         public void Excluir(int id);
+        public Usuario Login(string email, string senha);
 
     }
 }

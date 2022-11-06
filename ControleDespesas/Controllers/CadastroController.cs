@@ -17,11 +17,6 @@ namespace ControleDespesas.Controllers
             _usuarioRepository = usuarioRepository;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult Cadastrar()
         {
@@ -35,7 +30,11 @@ namespace ControleDespesas.Controllers
             {
                 _usuarioRepository.Cadastrar(usuario);
 
-                return RedirectToAction(nameof(Index));
+                ViewData["MSG_S"] = "Cadastro realizado com sucesso!";
+
+                //TODO: Enviar e-mail de confirmação de cadastro e futuro envio de senha
+
+                return RedirectToAction("Login", "Login");
             }
 
             return View();
