@@ -14,6 +14,10 @@ using ControleDespesas.Database;
 using ControleDespesas.Repositories;
 using ControleDespesas.Libraries.Sessoes;
 using ControleDespesas.Libraries.Login;
+using System.Net.Mail;
+using System.Net;
+using ControleDespesas.Libraries.Email;
+using Microsoft.AspNetCore.Http;
 
 namespace ControleDespesas
 {
@@ -43,10 +47,27 @@ namespace ControleDespesas
             #region Repositórios
 
             services.AddHttpContextAccessor();
+
+            services.AddScoped<SmtpClient>(options =>
+            {
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = Configuration.GetValue<string>("Email:SMTPServer"),
+                    Port = Configuration.GetValue<int>("Email:SMTPPort"),
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:Username"), Configuration.GetValue<string>("Email:Password")),
+                    EnableSsl = true
+                };
+
+                return smtp;
+            });
+
+            services.AddScoped<Email>();
             services.AddScoped<Sessao>();
             services.AddScoped<LoginUsuario>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-           
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             #endregion
 
             #region Banco de dados

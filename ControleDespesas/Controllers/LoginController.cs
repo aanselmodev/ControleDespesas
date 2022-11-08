@@ -47,5 +47,21 @@ namespace ControleDespesas.Controllers
              
             return View();
         }
+
+        [HttpGet]
+        public IActionResult RecuperarSenha()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RecuperarSenha([FromForm]Usuario usuarioForm)
+        {
+
+
+            return View();
+        }
+
+
     }
 }
