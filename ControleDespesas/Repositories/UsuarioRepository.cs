@@ -34,6 +34,11 @@ namespace ControleDespesas.Repositories
            return _banco.Usuarios.Find(id);
         }
 
+        public Usuario ConsultarPorEmail(string email)
+        {
+            return _banco.Usuarios.Where(a => a.Email == email).FirstOrDefault();
+        }
+
         public void Excluir(int id)
         {
             Usuario usuario = Consultar(id);

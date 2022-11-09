@@ -1,4 +1,5 @@
 ﻿using ControleDespesas.Libraries.Email;
+using ControleDespesas.Libraries.Senha;
 using ControleDespesas.Libraries.Sessoes;
 using ControleDespesas.Models;
 using ControleDespesas.Repositories;
@@ -33,15 +34,24 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm]Usuario usuario)
+        public IActionResult Cadastrar([FromForm]Usuario usuarioForm)
         {
             if (ModelState.IsValid)
             {
-                _usuarioRepository.Cadastrar(usuario);
-                _email.EnviarConfirmacaoCadastro(usuario);
-                _sessao.Cadastrar("Usuario.Email", usuario.Email);
-                
-                return RedirectToAction("Confirmacao", "Cadastro");
+                Usuario usuario = _usuarioRepository.ConsultarPorEmail(usuarioForm.Email);
+
+                if (usuario == null)
+                {
+                    _usuarioRepository.Cadastrar(usuarioForm);
+                    _email.EnviarConfirmacaoCadastro(usuarioForm);
+                    _sessao.Cadastrar("Usuario.Email", usuarioForm.Email);
+
+                    return RedirectToAction("Confirmacao", "Cadastro");
+                }
+                else
+                {
+                    ViewData["MSG_E"] = "E-mail já cadastrado!";
+                }
             }
 
             return View();

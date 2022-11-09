@@ -1,4 +1,6 @@
-﻿using ControleDespesas.Libraries.Login;
+﻿using ControleDespesas.Libraries.Email;
+using ControleDespesas.Libraries.Login;
+using ControleDespesas.Libraries.Senha;
 using ControleDespesas.Models;
 using ControleDespesas.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +16,13 @@ namespace ControleDespesas.Controllers
     {
         private IUsuarioRepository _usuarioRepository;
         private LoginUsuario _login;
+        private Email _email;
 
-        public LoginController(IUsuarioRepository usuarioRepository, LoginUsuario login)
+        public LoginController(IUsuarioRepository usuarioRepository, LoginUsuario login, Email email)
         {
             _usuarioRepository = usuarioRepository;
             _login = login;
+            _email = email;
         }
 
         [HttpGet]
@@ -57,7 +61,20 @@ namespace ControleDespesas.Controllers
         [HttpPost]
         public IActionResult RecuperarSenha([FromForm]Usuario usuarioForm)
         {
+            Usuario usuario = _usuarioRepository.ConsultarPorEmail(usuarioForm.Email);
+            
+            if (usuario != null)
+            {
+                usuario.Senha = Senha.GerarSenha();
+                _usuarioRepository.Atualizar(usuario);
+                _email.EnviarNovaSenha(usuario);
 
+                ViewData["MSG_S"] = $"Senha enviada para o e-mail {usuario.Email}.";
+            }
+            else
+            {
+                ViewData["MSG_E"] = $"E-mail não cadastrado.";
+            }
 
             return View();
         }

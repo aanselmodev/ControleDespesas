@@ -19,8 +19,20 @@ namespace ControleDespesas.Libraries.Email
             _config = config;
         }
 
-        public void EnviarNovaSenha(string email)
+        public void EnviarNovaSenha(Usuario usuario)
         {
+            string mensagem = $@"
+            <h2>Sua nova senha foi gerada:</h2>    
+            <h1>{usuario.Senha}</h2>
+            <br />
+            <h3>Você pode alterá-la utilizando o painel de controle.</h3>
+            <br />
+            <p>E-mail enviado automaticamente por Controle de Despesas.</p>
+            ";
+
+            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas - Redefinição de Senha", mensagem, true);
+
+            _smtp.Send(msg);
         }
 
 
@@ -34,14 +46,22 @@ namespace ControleDespesas.Libraries.Email
             <p>E-mail enviado automaticamente por Controle de Despesas.</p>
             ";
 
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress(_config.GetValue<string>("Email:Username"));
-            msg.To.Add(usuario.Email);
-            msg.Subject = "Controle de Despesas - Confirmação de Cadastro";
-            msg.Body = mensagem;
-            msg.IsBodyHtml = true;
+            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas = Confirmação de Cadastro", mensagem, true);
 
             _smtp.Send(msg);
+        }
+
+        private MailMessage GerarMensagem(string emailDestinatario, string assunto, string mensagem, bool html)
+        {
+            MailMessage msg = new MailMessage();
+
+            msg.From = new MailAddress(_config.GetValue<string>("Email:Username"));
+            msg.To.Add(emailDestinatario);
+            msg.Subject = assunto;
+            msg.Body = mensagem;
+            msg.IsBodyHtml = html;
+
+            return msg;
         }
 
     }

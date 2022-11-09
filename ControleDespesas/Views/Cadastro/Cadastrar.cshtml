@@ -20,7 +20,7 @@
                 <form method="post">
                     <div class="container">
                         <div class="col-sm-4 p-2">
-                            <label asp-for="Nome" class="form-label d-flex" style="text-align: left" >Nome</label>
+                            <label asp-for="Nome" class="form-label d-flex" style="text-align: left">Nome</label>
                             <input asp-for="Nome" type="text" class="form-control">
                             <span asp-validation-for="Nome" class="text-danger"></span>
                         </div>
@@ -62,6 +62,11 @@
                             <input type="password" class="form-control" asp-for="ConfirmarSenha" placeholder="*********">
                             <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
                         </div>
+
+                        <div class="col-sm-4">
+                            @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
+                        </div>
+
                         <hr class="my-4" />
                         <div class="col" align="center">
                             <button type="submit" class="btn btn-secondary">Cadastrar</button>

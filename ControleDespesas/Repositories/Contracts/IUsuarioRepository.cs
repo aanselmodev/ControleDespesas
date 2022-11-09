@@ -10,6 +10,7 @@ namespace ControleDespesas.Repositories
     {
         public void Cadastrar(Usuario usuario);
         public Usuario Consultar(int id);
+        public Usuario ConsultarPorEmail(string email);
         public void Atualizar(Usuario usuario);
         public void Excluir(int id);
         public Usuario Login(string email, string senha);
