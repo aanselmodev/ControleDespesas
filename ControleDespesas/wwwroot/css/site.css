@@ -124,7 +124,7 @@ body {
 
 .bi {
     vertical-align: -.125em;
-    fill: currentColor;
+    fill: limegreen;
 }
 
 .nav-scroller {
@@ -169,7 +169,7 @@ body {
 
 .bi {
     vertical-align: -.125em;
-    fill: currentColor;
+    fill: limegreen;
 }
 
 .nav-scroller {
@@ -191,5 +191,5 @@ body {
 }
 
 .default-color {
-    color: limegreen !important;
+    fill: limegreen;
 }

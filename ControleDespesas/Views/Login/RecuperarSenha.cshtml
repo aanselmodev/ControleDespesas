@@ -2,34 +2,32 @@
 @{ ViewData["Title"] = "Recuperar a Senha"; }
 
 
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Voltar</a>
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="container">
+        <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Voltar</a>
+    </div>
 </header>
 
 <div class="container" align="center">
-    <main>
-        <div class="row py-2 text-center">
-            <img class="" src="~/lib/bootstrap-icons-1.9.1/file-lock.svg" height="100" width="100" />
-            <h4 class="alert">Recuperação de Senha</h4>
-        </div>
-        <div class="row">
-            <form method="post">
-                <div class="col-sm-4 p-2">
-                    <label asp-for="Email" class="form-label d-flex">Preencha o e-mail que deseja recuperar a senha:</label>
-                    <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+    <div class="row py-2 text-center">
+        <img class="" src="~/lib/bootstrap-icons-1.9.1/file-lock.svg" height="100" width="100" />
+        <h4 class="alert">Recuperação de Senha</h4>
+    </div>
+    <div class="row">
+        <form method="post">
+            <div class="col-sm-4 p-2">
+                <label asp-for="Email" class="form-label d-flex">Preencha o e-mail que deseja recuperar a senha:</label>
+                <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
 
-                <div class="col-sm-4">
-                    @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
-                </div>
+            <div class="col-sm-4">
+                @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
+            </div>
 
-                <hr class="my-4" />
-                <button class="btn btn-primary col-sm-2 p-2" type="submit">Enviar nova senha</button>
-                <br />
-                <br />
-            </form>
-        </div>
-
-    </main>
+            <button class="btn btn-primary col-sm-2 p-2" type="submit">Enviar nova senha</button>
+            <br />
+            <br />
+        </form>
+    </div>
 </div>
