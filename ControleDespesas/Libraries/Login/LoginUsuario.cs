@@ -11,7 +11,7 @@ namespace ControleDespesas.Libraries.Login
     public class LoginUsuario
     {
         private Sessao _sessao;
-        private const  string chaveLogin = "Login.Usuario";
+        private const string chaveLogin = "Login.Usuario";
 
         public LoginUsuario(Sessao sessao)
         {

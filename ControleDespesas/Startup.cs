@@ -18,6 +18,7 @@ using System.Net.Mail;
 using System.Net;
 using ControleDespesas.Libraries.Email;
 using Microsoft.AspNetCore.Http;
+using ControleDespesas.Repositories.Contracts;
 
 namespace ControleDespesas
 {
@@ -67,6 +68,8 @@ namespace ControleDespesas
             services.AddScoped<LoginUsuario>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IDespesaRepository, DespesaRepository>();
+            services.AddScoped<ITipoDespesaRepository, TipoDespesaRepository>();
 
             #endregion
 
@@ -75,6 +78,8 @@ namespace ControleDespesas
             services.AddDbContext<ControleDespesasContext>(options => options.UseSqlServer(Configuration.GetValue<string>("DatabaseConnectionString")));
 
             #endregion
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +96,7 @@ namespace ControleDespesas
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -103,7 +109,7 @@ namespace ControleDespesas
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

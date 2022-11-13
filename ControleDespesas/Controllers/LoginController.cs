@@ -1,4 +1,5 @@
 ﻿using ControleDespesas.Libraries.Email;
+using ControleDespesas.Libraries.Filtros;
 using ControleDespesas.Libraries.Login;
 using ControleDespesas.Libraries.Senha;
 using ControleDespesas.Models;
@@ -26,13 +27,13 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Index()
         {
             return View();
         }
         
         [HttpPost]
-        public IActionResult Login([FromForm]Usuario usuarioForm)
+        public IActionResult Index([FromForm]Usuario usuarioForm)
         {
             Usuario usuario = _usuarioRepository.Login(usuarioForm.Email, usuarioForm.Senha);
 
@@ -77,6 +78,14 @@ namespace ControleDespesas.Controllers
             }
 
             return View();
+        }
+        
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            _login.Logout();
+
+            return RedirectToAction("Index", "Login");
         }
 
 

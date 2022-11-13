@@ -9,13 +9,13 @@
 <main>
     <div class="container" align="center">
         <div class="row py-2 text-center">
-            <img class="p-2" src="~/lib/bootstrap-icons-1.9.1/bootstrap-icons-1.9.1/check-circle.svg" width="100" height="100">
+            <img class="" src="~/lib/bootstrap-icons-1.9.1/check-circle.svg" width="100" height="100"/>
             <h2 class="alert">Cadastro realizado com sucesso!</h2>
             <p>Um e-mail de confirmação foi enviado para <b>@HttpContextAccessor.HttpContext.Session.GetString("Usuario.Email").</b></p>
         </div>
     </div>
     <div class="container align-content-center" align="center">
-        <a asp-action="Login" asp-controller="Login" class="btn btn-secondary col-sm-2 p-2">Fazer login</a>
+        <a asp-action="Index" asp-controller="Login" class="btn btn-primary col-sm-2 p-2">Fazer login</a>
     </div>
 </main>
 

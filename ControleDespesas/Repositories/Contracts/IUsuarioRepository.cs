@@ -14,6 +14,5 @@ namespace ControleDespesas.Repositories
         public void Atualizar(Usuario usuario);
         public void Excluir(int id);
         public Usuario Login(string email, string senha);
-
     }
 }

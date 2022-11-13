@@ -189,3 +189,7 @@ body {
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
+
+.default-color {
+    color: limegreen !important;
+}

@@ -1,13 +1,39 @@
-﻿@{ 
+﻿@{
     ViewData["Title"] = "Home";
 }
 
-<div class="container">
-    <header class="d-flex flex-wrap align-items-end justify-content-end  py-2 mb-1 border-bottom">
-        <div class="col-md-3 text-end">
-            <a asp-action="Login" asp-controller="Login" class="btn btn-secondary">Login</a>
-            <a asp-action="Cadastrar" asp-controller="Cadastro" class="btn btn-secondary">Cadastrar</a>
-        </div>
-    </header>
+<head>
+    <link rel="stylesheet" href="~/css/sidebars.css" />
+</head>
+
+<div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+        <li class="nav-item">
+            <a href="#" class="nav-link py-3 border-bottom rounded-0" aria-current="page" title="Início" data-bs-toggle="tooltip" data-bs-placement="right">
+                <img class="" src="~/lib/bootstrap-icons-1.9.1/house.svg" height="24" width="24" />
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Visão Geral" data-bs-toggle="tooltip" data-bs-placement="right">
+                <img class="" src="~/lib/bootstrap-icons-1.9.1/table.svg" height="24" width="24" />
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Despesas" data-bs-toggle="tooltip" data-bs-placement="right">
+                <img class="" src="~/lib/bootstrap-icons-1.9.1/grid.svg" height="24" width="24" />
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Conta" data-bs-toggle="tooltip" data-bs-placement="right">
+                <img class="" src="~/lib/bootstrap-icons-1.9.1/person-badge.svg" height="24" width="24" />
+            </a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Login" class="nav-link py-3 border-bottom rounded-0" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
+                <img class="" src="~/lib/bootstrap-icons-1.9.1/box-arrow-left.svg" height="24" width="24" />
+            </a>
+        </li>
+    </ul>
 </div>
+
 

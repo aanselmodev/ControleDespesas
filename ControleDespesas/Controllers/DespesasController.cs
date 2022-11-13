@@ -1,5 +1,4 @@
-﻿using ControleDespesas.Libraries.Filtros;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ControleDespesas.Controllers
 {
-    [UsuarioAutorizacao()]
-    public class HomeController : Controller
+    public class DespesasController : Controller
     {
-        [HttpGet]
         public IActionResult Index()
         {
             return View();

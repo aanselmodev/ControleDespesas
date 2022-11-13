@@ -1,4 +1,5 @@
-﻿using ControleDespesas.Models;
+﻿using ControleDespesas.Libraries.Tipos;
+using ControleDespesas.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace ControleDespesas.Database
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Despesa> Despesas { get; set; }
+        public DbSet<TipoDespesa> TiposDespesa { get; set; }
 
         
     }
