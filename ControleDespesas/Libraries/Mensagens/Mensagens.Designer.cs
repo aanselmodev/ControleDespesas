@@ -97,7 +97,7 @@ namespace ControleDespesas.Libraries.Mensagens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O valor do campo &apos;{0}&apos; não é igual ao valor do campo &apos;{1}&apos;!.
+        ///   Looks up a localized string similar to Os campos de senhas não são iguais!.
         /// </summary>
         public static string MSG_E005 {
             get {

@@ -35,8 +35,9 @@ namespace ControleDespesas.Models
         [EmailAddress(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E002")]
         public string Email { get; set; }
         
-        [Display(Name = "Senha")]
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E001")]
+        [MinLength(8, ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E004")]
+        [MaxLength(12, ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E003")]
         public string Senha { get; set; }
 
         [NotMapped]
@@ -44,5 +45,8 @@ namespace ControleDespesas.Models
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E001")]
         [Compare("Senha", ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E005")]
         public string ConfirmarSenha { get; set; }
+
+        [Display(Name = "Ativo")]
+        public bool Ativo { get; set; }
     }
 }

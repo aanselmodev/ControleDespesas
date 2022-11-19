@@ -1,0 +1,43 @@
+﻿@inject ControleDespesas.Libraries.Login.LoginUsuario _login;
+
+@{ 
+    ViewData["Title"] = "Painel de Controle";
+}
+
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="container">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
+    </div>
+</header>
+
+<div class="container" align="center">
+    <div class="p text-center">
+        <i class="bi bi-gear default-img-icon"></i>
+        <h3>Painel de Controle</h3>
+    </div>
+    <br />
+    <br />
+    @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml"); }
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card  text-center">
+                <div class="card-body">
+                    <i class="bi bi-file-earmark-person default-icon-menu"></i>
+                    <h6 class="card-subtitle mb-2 text-muted">Dados pessoais</h6>
+                    <p class="card-text">Altere seus dados cadastrais.</p>
+                    <a asp-action="Atualizar" asp-route-id="@_login.ObterUsuario().Id" class="btn btn-primary">Alterar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-file-earmark-lock default-icon-menu"></i>
+                    <h6 class="card-subtitle mb-2 text-muted">Senha</h6>
+                    <p class="card-text">Altere sua senha de acesso.</p>
+                    <a asp-action="AtualizarSenha" class="btn btn-primary">Alterar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 ﻿using ControleDespesas.Libraries.Sessoes;
 using ControleDespesas.Models;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,5 +43,6 @@ namespace ControleDespesas.Libraries.Login
         {
             _sessao.RemoverTodas();
         } 
+
     }
 }

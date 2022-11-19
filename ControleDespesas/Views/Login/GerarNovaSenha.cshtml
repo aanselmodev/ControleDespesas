@@ -1,0 +1,55 @@
+﻿@model ControleDespesas.Models.RedefinicaoSenha;
+ 
+@{ 
+    ViewData["Title"] = "Gerar Nova Senha"; 
+    
+}
+
+
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="container">
+        <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Página Inicial</a>
+    </div>
+</header>
+
+<div class="container" align="center">
+    <div class="text-center">
+        <i class="bi bi-file-earmark-lock default-img-icon"></i>
+        <h3>Cadastre sua nova senha</h3>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <form method="post">
+                <div class="col-sm-4 p-2">
+                    <label asp-for="Codigo" class="form-label d-flex">Código enviado por e-mail</label>
+                    <input type="text" class="form-control" asp-for="Codigo">
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                </div>
+
+                <div class="col-sm-4 p-2">
+                    <label asp-for="Senha" class="form-label d-flex">Nova senha</label>
+                    <input type="password" class="form-control" asp-for="Senha" placeholder="*********">
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                <div class="col-sm-4 p-2">
+                    <label asp-for="ConfirmarSenha" class="form-label d-flex">Confirme a nova senha</label>
+                    <input type="password" class="form-control" asp-for="ConfirmarSenha" placeholder="*********">
+                    <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+                </div>
+
+                <div class="col-sm-4">
+                    @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
+                </div>
+
+                <br />
+                <div class="col" align="center">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

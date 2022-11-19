@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using ControleDespesas.Libraries.Senha;
 
 namespace ControleDespesas.Libraries.Email
 {
@@ -19,34 +20,65 @@ namespace ControleDespesas.Libraries.Email
             _config = config;
         }
 
-        public void EnviarNovaSenha(Usuario usuario)
+        public void EnviarNovaSenha(Usuario usuario, string url, string codigo)
         {
-            string mensagem = $@"
-            <h2>Sua nova senha foi gerada:</h2>    
-            <h1>{usuario.Senha}</h2>
-            <br />
-            <h3>Você pode alterá-la utilizando o painel de controle.</h3>
-            <br />
-            <p>E-mail enviado automaticamente por Controle de Despesas.</p>
-            ";
+            string mensagem = $@" 
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                </head>
+                <body>
+                    <header>
+                    </header>
+                    <main>
+                        <div align='center'>
+                            <h4>Seu código para redefinição de senha é:</h4>
+                            <br />
+                            <h2>{codigo}</h2>
+                            <br />
+                            <h4>Clique no link abaixo para cadastrar uma nova senha:</h4>    
+                            <br />
+                            <a href='{url}'>Gerar nova senha</a>
+                            <br />
+                            <br />
+                            <p>Você será redirecionado para uma página da web.</p>
+                            <p>E-mail enviado automaticamente por Controle de Despesas.</p>
+                        </div>
+                    </main>
+                </body>";
 
-            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas - Redefinição de Senha", mensagem, true);
+            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas - Gerar Nova Senha", mensagem, true);
 
             _smtp.Send(msg);
         }
 
 
-        public void EnviarConfirmacaoCadastro(Usuario usuario)
+        public void EnviarConfirmacaoCadastro(Usuario usuario, string url)
         {
-            string mensagem = $@"
-            <h2>Cadastro realizado com sucesso!</h2>    
-            <h4>Parabéns, {usuario.Nome}, agora você pode organizar sua vida financeira!</h4>
-            <br />
-            <br />
-            <p>E-mail enviado automaticamente por Controle de Despesas.</p>
-            ";
+            string mensagem = $@" 
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                </head>
+                <body>
+                    <header>
+                    </header>
+                    <main>
+                        <div align='center'>
+                            <h4>Clique no link abaixo para confirmar o seu cadastro:</h4>    
+                            <br />
+                            <a href='{url}'>Confirmar cadastro</a>
+                            <br />
+                            <br />
+                            <p>Você será redirecionado para uma página da web.</p>
+                            <p>E-mail enviado automaticamente por Controle de Despesas.</p>
+                        </div>
+                    </main>
+                </body>";
 
-            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas = Confirmação de Cadastro", mensagem, true);
+            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas - Gerar Nova Senha", mensagem, true);
 
             _smtp.Send(msg);
         }

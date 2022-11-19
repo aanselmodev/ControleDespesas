@@ -47,7 +47,6 @@ namespace ControleDespesas.Libraries.Sessoes
         {
             _context.HttpContext.Session.Clear();
         }
-
     }
 
 }

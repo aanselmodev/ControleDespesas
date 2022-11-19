@@ -1,39 +1,27 @@
-﻿@{
+﻿@model ControleDespesas.Models.Usuario
+@inject ControleDespesas.Libraries.Login.LoginUsuario _login;
+
+@{
     ViewData["Title"] = "Home";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/sidebars.css" />
-</head>
+<main>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <h4>Controle de Despesas</h4>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2">Home</a></li>
+                <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2">Visão geral</a></li>
+                <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2">Despesas</a></li>
+                <li><a asp-action="Index" asp-controller="PainelControle" class="nav-link px-2">Painel de Controle</a></li>
+            </ul>
 
-<div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
-    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-        <li class="nav-item">
-            <a href="#" class="nav-link py-3 border-bottom rounded-0" aria-current="page" title="Início" data-bs-toggle="tooltip" data-bs-placement="right">
-                <img class="" src="~/lib/bootstrap-icons-1.9.1/house.svg" height="24" width="24" />
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Visão Geral" data-bs-toggle="tooltip" data-bs-placement="right">
-                <img class="" src="~/lib/bootstrap-icons-1.9.1/table.svg" height="24" width="24" />
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Despesas" data-bs-toggle="tooltip" data-bs-placement="right">
-                <img class="" src="~/lib/bootstrap-icons-1.9.1/grid.svg" height="24" width="24" />
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Conta" data-bs-toggle="tooltip" data-bs-placement="right">
-                <img class="" src="~/lib/bootstrap-icons-1.9.1/person-badge.svg" height="24" width="24" />
-            </a>
-        </li>
-        <li>
-            <a asp-action="Index" asp-controller="Login" class="nav-link py-3 border-bottom rounded-0" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
-                <img class="" src="~/lib/bootstrap-icons-1.9.1/box-arrow-left.svg" height="24" width="24" />
-            </a>
-        </li>
-    </ul>
-</div>
+            <div class="col-md-3 text-end">
+                <a asp-action="Logout" asp-controller="Login" class="btn btn-primary">Sair <i class="bi bi-door-open"></i></a>
+            </div>
+        </header>
+    </div>
+</main>
+
 
 

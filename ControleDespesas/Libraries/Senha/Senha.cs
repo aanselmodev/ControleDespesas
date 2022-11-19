@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControleDespesas.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,7 +10,7 @@ namespace ControleDespesas.Libraries.Senha
 {
     public class Senha
     {
-        public static string GerarSenha()
+        public static string GerarCodigoRedefinicaoSenha()
         {
             char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
             byte[] data = new byte[8];

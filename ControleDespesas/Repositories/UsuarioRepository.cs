@@ -23,6 +23,23 @@ namespace ControleDespesas.Repositories
             _banco.SaveChanges();
         }
 
+        public void AtualizarDadosCadastrais(Usuario usuario)
+        {
+            _banco.Update(usuario);
+            _banco.Entry(usuario).Property(x => x.Senha).IsModified = false;
+            _banco.SaveChanges();
+        }
+
+        public void AtualizarSenha(Usuario usuario)
+        {
+            _banco.Update(usuario);
+            _banco.Entry(usuario).Property(x => x.Nome).IsModified = false;
+            _banco.Entry(usuario).Property(x => x.Sexo).IsModified = false;
+            _banco.Entry(usuario).Property(x => x.Sobrenome).IsModified = false;
+            _banco.Entry(usuario).Property(x => x.Email).IsModified = false;
+            _banco.SaveChanges();
+        }
+
         public void Cadastrar(Usuario usuario)
         {
             _banco.Add(usuario);
@@ -49,6 +66,14 @@ namespace ControleDespesas.Repositories
         public Usuario Login(string email, string senha)
         {
             return _banco.Usuarios.Where(u => u.Email == email && u.Senha == senha).FirstOrDefault();
+        }
+
+        public void AtualizarStatusUsuario(int id, bool ativo)
+        {
+            Usuario usuario = Consultar(id);
+            usuario.Ativo = ativo;
+
+            Atualizar(usuario);
         }
     }
 }

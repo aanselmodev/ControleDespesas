@@ -1,4 +1,5 @@
-﻿using ControleDespesas.Libraries.Email;
+﻿using ControleDespesas.Libraries.Cookies;
+using ControleDespesas.Libraries.Email;
 using ControleDespesas.Libraries.Senha;
 using ControleDespesas.Libraries.Sessoes;
 using ControleDespesas.Models;
@@ -18,13 +19,14 @@ namespace ControleDespesas.Controllers
         private IUsuarioRepository _usuarioRepository;
         private Email _email;
         private Sessao _sessao;
-        
+        private Cookie _cookie;
 
-        public CadastroController(IUsuarioRepository usuarioRepository, Email email, Sessao sessao)
+        public CadastroController(IUsuarioRepository usuarioRepository, Email email, Sessao sessao, Cookie cookie)
         {
             _usuarioRepository = usuarioRepository;
             _email = email;
             _sessao = sessao;
+            _cookie = cookie;
         }
 
         [HttpGet]
@@ -34,19 +36,22 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm]Usuario usuarioForm)
+        public IActionResult Cadastrar([FromForm]Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = _usuarioRepository.ConsultarPorEmail(usuarioForm.Email);
-
-                if (usuario == null)
+                if (_usuarioRepository.ConsultarPorEmail(usuario.Email) == null)
                 {
-                    _usuarioRepository.Cadastrar(usuarioForm);
-                    _email.EnviarConfirmacaoCadastro(usuarioForm);
-                    _sessao.Cadastrar("Usuario.Email", usuarioForm.Email);
+                    usuario.Ativo = false;
+                    _usuarioRepository.Cadastrar(usuario);
+                    
+                    string url = $@"https://{_cookie.ObterHost()}/Cadastro/{nameof(Confirmar)}/{usuario.Id}";
 
-                    return RedirectToAction("Confirmacao", "Cadastro");
+                    _email.EnviarConfirmacaoCadastro(usuario, url);
+
+                    TempData["MSG_S"] = $"Cadastro realizado com sucesso! E-mail de confirmação enviado para {usuario.Email}";
+
+                    return RedirectToAction("Index", "Login");
                 }
                 else
                 {
@@ -58,9 +63,12 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpGet]
-        public IActionResult Confirmacao()
+        public IActionResult Confirmar(int id)
         {
+            _usuarioRepository.AtualizarStatusUsuario(id, true);
+
             return View();
         }
+
     }
 }

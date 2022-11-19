@@ -66,10 +66,12 @@ namespace ControleDespesas
             services.AddScoped<Email>();
             services.AddScoped<Sessao>();
             services.AddScoped<LoginUsuario>();
+            services.AddScoped<Libraries.Cookies.Cookie>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IDespesaRepository, DespesaRepository>();
             services.AddScoped<ITipoDespesaRepository, TipoDespesaRepository>();
+            services.AddScoped<IRedefinicaoSenhaRepository, RedefinicaoSenhaRepository>();
 
             #endregion
 

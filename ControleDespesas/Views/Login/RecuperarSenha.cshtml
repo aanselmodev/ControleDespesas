@@ -4,13 +4,13 @@
 
 <header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4 border-bottom">
     <div class="container">
-        <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Voltar</a>
+        <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
     </div>
 </header>
 
 <div class="container" align="center">
     <div class="row py-2 text-center">
-        <img class="" src="~/lib/bootstrap-icons-1.9.1/file-lock.svg" height="100" width="100" />
+        <i class="bi bi-file-lock default-img-icon"></i>
         <h4 class="alert">Recuperação de Senha</h4>
     </div>
     <div class="row">
@@ -18,6 +18,7 @@
             <div class="col-sm-4 p-2">
                 <label asp-for="Email" class="form-label d-flex">Preencha o e-mail que deseja recuperar a senha:</label>
                 <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
+                <p class="text-warning py-1" >Será enviado um link para cadastrar uma nova senha.</p>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
@@ -25,9 +26,9 @@
                 @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
             </div>
 
-            <button class="btn btn-primary col-sm-2 p-2" type="submit">Enviar nova senha</button>
             <br />
-            <br />
+            <button class="btn btn-primary col-sm-2 p-2" type="submit">Enviar <i class="bi bi-send-fill"></i></button>
+            
         </form>
     </div>
 </div>

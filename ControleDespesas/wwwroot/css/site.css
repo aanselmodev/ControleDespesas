@@ -124,7 +124,7 @@ body {
 
 .bi {
     vertical-align: -.125em;
-    fill: limegreen;
+    fill: currentColor;
 }
 
 .nav-scroller {
@@ -169,7 +169,7 @@ body {
 
 .bi {
     vertical-align: -.125em;
-    fill: limegreen;
+    fill: currentColor;
 }
 
 .nav-scroller {
@@ -190,6 +190,29 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-.default-color {
-    fill: limegreen;
+.default-img-icon {
+    font-size:100px;
+    color: dodgerblue;
+}
+
+.default-icon-menu {
+    font-size:24px;
+    color: dodgerblue;
+}
+
+.form-control-dark {
+    border-color: var(--bs-gray);
+}
+
+    .form-control-dark:focus {
+        border-color: #fff;
+        box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+    }
+
+.text-small {
+    font-size: 85%;
+}
+
+.dropdown-toggle {
+    outline: 0;
 }

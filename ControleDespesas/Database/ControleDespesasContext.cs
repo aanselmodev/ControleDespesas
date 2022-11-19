@@ -18,6 +18,7 @@ namespace ControleDespesas.Database
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Despesa> Despesas { get; set; }
         public DbSet<TipoDespesa> TiposDespesa { get; set; }
+        public DbSet<RedefinicaoSenha> RedefinicaoSenha { get; set; }
 
         
     }
