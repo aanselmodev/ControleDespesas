@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using ControleDespesas.Libraries.Senha;
+using ControleDespesas.Libraries;
 
-namespace ControleDespesas.Libraries.Email
+namespace ControleDespesas.Libraries
 {
     public class Email
     {
@@ -78,7 +78,7 @@ namespace ControleDespesas.Libraries.Email
                     </main>
                 </body>";
 
-            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas - Gerar Nova Senha", mensagem, true);
+            MailMessage msg = GerarMensagem(usuario.Email, "Controle de Despesas - Confirmação de Cadastro", mensagem, true);
 
             _smtp.Send(msg);
         }

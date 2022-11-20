@@ -1,4 +1,4 @@
-﻿using ControleDespesas.Libraries.Tipos;
+﻿using ControleDespesas.Libraries;
 using System;
 using System.Collections.Generic;
 using System.Linq;

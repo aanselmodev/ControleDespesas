@@ -78,21 +78,21 @@ body {
     padding: 15px;
 }
 
-.form-signin .form-floating:focus-within {
-    z-index: 2;
-}
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
 
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 
 .bd-placeholder-img {
     font-size: 1.125rem;
@@ -134,16 +134,16 @@ body {
     overflow-y: hidden;
 }
 
-.nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
 
 .bd-placeholder-img {
     font-size: 1.125rem;
@@ -179,35 +179,25 @@ body {
     overflow-y: hidden;
 }
 
-.nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
 
 .default-img-icon {
-    font-size:100px;
-    color: dodgerblue;
+    font-size: 100px;
+    color: #1b6ec2;
 }
 
-.default-icon-menu {
-    font-size:24px;
-    color: dodgerblue;
+.default-icon-medium {
+    font-size: 40px;
+    color: #1b6ec2;
 }
 
 .form-control-dark {
     border-color: var(--bs-gray);
 }
 
-    .form-control-dark:focus {
-        border-color: #fff;
-        box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
-    }
+.form-control-dark:focus {
+    border-color: #fff;
+    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+}
 
 .text-small {
     font-size: 85%;
@@ -215,4 +205,13 @@ body {
 
 .dropdown-toggle {
     outline: 0;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #1938b3;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(25,56,179,0.5), rgba(0,110,194,0.5));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(25,56,179,0.5), rgba(0,110,194,0.5))
 }

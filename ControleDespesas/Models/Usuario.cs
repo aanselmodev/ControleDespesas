@@ -1,16 +1,19 @@
-﻿using ControleDespesas.Libraries.Mensagens;
+﻿using ControleDespesas.Libraries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-
 
 namespace ControleDespesas.Models
 {
     public class Usuario
     {
+        private string _senha;
+        private string _confirmarSenha;
+
         [Key]
         [Display(Name = "Id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -38,13 +41,23 @@ namespace ControleDespesas.Models
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(8, ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E004")]
         [MaxLength(12, ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E003")]
-        public string Senha { get; set; }
+        public string Senha
+        {
+            get => _senha;
+            set => _senha = ControleDespesas.Libraries.Senha.Criptografar(value);
+        }
 
         [NotMapped]
+        [JsonIgnore]
         [Display(Name = "Confirmar a Senha")]
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E001")]
         [Compare("Senha", ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_E005")]
-        public string ConfirmarSenha { get; set; }
+        #nullable enable
+        public string? ConfirmarSenha
+        {
+            get => _confirmarSenha;
+            set => _confirmarSenha = ControleDespesas.Libraries.Senha.Criptografar(value);
+        }
 
         [Display(Name = "Ativo")]
         public bool Ativo { get; set; }

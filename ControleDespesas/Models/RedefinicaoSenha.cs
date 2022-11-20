@@ -1,4 +1,4 @@
-﻿using ControleDespesas.Libraries.Mensagens;
+﻿using ControleDespesas.Libraries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

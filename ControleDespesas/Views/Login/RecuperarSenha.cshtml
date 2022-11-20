@@ -2,33 +2,41 @@
 @{ ViewData["Title"] = "Recuperar a Senha"; }
 
 
-<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4 border-bottom">
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
     <div class="container">
         <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
     </div>
 </header>
 
-<div class="container" align="center">
-    <div class="row py-2 text-center">
-        <i class="bi bi-file-lock default-img-icon"></i>
-        <h4 class="alert">Recuperação de Senha</h4>
-    </div>
-    <div class="row">
-        <form method="post">
-            <div class="col-sm-4 p-2">
-                <label asp-for="Email" class="form-label d-flex">Preencha o e-mail que deseja recuperar a senha:</label>
-                <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
-                <p class="text-warning py-1" >Será enviado um link para cadastrar uma nova senha.</p>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="py-2 text-center">
+                            <i class="bi bi-file-earmark-lock default-img-icon"></i>
+                        </div>
+                        <h3 class=" mb-3">Recuperar a sua senha</h3>
+                        <form method="post">
+                            <div class="col-sm-12 p-2">
+                                <label asp-for="Email" class="form-label d-flex">Preencha o e-mail que deseja recuperar a senha:</label>
+                                <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
+                                <p class="text-warning py-1">Será enviado um link para cadastrar uma nova senha.</p>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
 
-            <div class="col-sm-4">
-                @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
-            </div>
+                            <div class="col-sm-12">
+                                @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
+                            </div>
 
-            <br />
-            <button class="btn btn-primary col-sm-2 p-2" type="submit">Enviar <i class="bi bi-send-fill"></i></button>
-            
-        </form>
+                            <br />
+                            <button class="btn btn-primary" type="submit">Enviar <i class="bi bi-send-fill"></i></button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

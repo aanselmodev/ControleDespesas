@@ -1,8 +1,4 @@
-﻿using ControleDespesas.Libraries.Cookies;
-using ControleDespesas.Libraries.Email;
-using ControleDespesas.Libraries.Filtros;
-using ControleDespesas.Libraries.Login;
-using ControleDespesas.Libraries.Senha;
+﻿using ControleDespesas.Libraries;
 using ControleDespesas.Models;
 using ControleDespesas.Repositories;
 using ControleDespesas.Repositories.Contracts;
@@ -17,7 +13,7 @@ namespace ControleDespesas.Controllers
 {
     public class LoginController : Controller
     {
-        private IUsuarioRepository _usuarioRepository;
+        private IUsuarioRepository _usuario;
         private LoginUsuario _login;
         private Email _email;
         private Cookie _cookie;
@@ -25,7 +21,7 @@ namespace ControleDespesas.Controllers
 
         public LoginController(IUsuarioRepository usuarioRepository, LoginUsuario login, Email email, Cookie cookie, IRedefinicaoSenhaRepository redefinicaoSenha)
         {
-            _usuarioRepository = usuarioRepository;
+            _usuario = usuarioRepository;
             _login = login;
             _email = email;
             _cookie = cookie;
@@ -39,7 +35,7 @@ namespace ControleDespesas.Controllers
         }
         
         [HttpPost]
-        public IActionResult Index([FromForm]Usuario usuario)
+        public IActionResult Index([FromForm]Usuario usuarioForm)
         {
             ModelState.Remove("Id");
             ModelState.Remove("Nome");
@@ -50,7 +46,7 @@ namespace ControleDespesas.Controllers
 
             if (ModelState.IsValid)
             {
-                usuario = _usuarioRepository.Login(usuario.Email, usuario.Senha);
+                Usuario usuario = _usuario.Login(usuarioForm.Email, usuarioForm.Senha);
 
                 if (usuario != null)
                 {
@@ -83,7 +79,7 @@ namespace ControleDespesas.Controllers
         [HttpPost]
         public IActionResult RecuperarSenha([FromForm]Usuario usuario)
         {
-            usuario = _usuarioRepository.ConsultarPorEmail(usuario.Email);
+            usuario = _usuario.ConsultarPorEmail(usuario.Email);
             
             if (usuario != null)
             {
@@ -91,11 +87,15 @@ namespace ControleDespesas.Controllers
                 string codigo = Senha.GerarCodigoRedefinicaoSenha();
 
                 _redefinicaoSenha.ExcluirTodosPorIdUsuario(usuario.Id);
-                _redefinicaoSenha.Cadastrar(new RedefinicaoSenha() { IdUsuario = usuario.Id, Codigo = codigo, DataExpiracao = DateTime.Now.AddMinutes(10.0), Senha = usuario.Senha } );
-
+                _redefinicaoSenha.Cadastrar(new RedefinicaoSenha() { IdUsuario = usuario.Id, Codigo = codigo, DataExpiracao = DateTime.Now.AddMinutes(5.0), Senha = usuario.Senha } );
+                
+                _usuario.AtualizarStatusUsuario(usuario.Id, false);
+                
                 _email.EnviarNovaSenha(usuario, url, codigo);
 
-                ViewData["MSG_S"] = $"Link para gerar uma nova senha enviado para o e-mail {usuario.Email}.";
+                TempData["MSG_S"] = $"Link para gerar uma nova senha enviado para o e-mail {usuario.Email}.";
+
+                return RedirectToAction("Index", "Login");
             }
             else
             {
@@ -132,13 +132,14 @@ namespace ControleDespesas.Controllers
                     {
                         if (redefinicaoSenha.Codigo == redefinicao.Codigo)
                         {
-                            Usuario usuario = _usuarioRepository.Consultar(id);
+                            Usuario usuario = _usuario.Consultar(id);
 
                             if(usuario.Senha != redefinicaoSenha.Senha)
                             {
                                 usuario.Senha = redefinicaoSenha.Senha;
 
-                                _usuarioRepository.AtualizarSenha(usuario);
+                                _usuario.AtualizarSenha(usuario);
+                                _usuario.AtualizarStatusUsuario(usuario.Id, true);
 
                                 TempData["MSG_S"] = "Nova senha cadastrada com sucesso!";
 

@@ -1,4 +1,4 @@
-﻿using ControleDespesas.Libraries.Sessoes;
+﻿using ControleDespesas.Libraries;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Microsoft.AspNetCore.Http;
 
-namespace ControleDespesas.Libraries.Cookies
+namespace ControleDespesas.Libraries
 {
     public class Cookie
     {

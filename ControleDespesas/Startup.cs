@@ -12,11 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using ControleDespesas.Database;
 using ControleDespesas.Repositories;
-using ControleDespesas.Libraries.Sessoes;
-using ControleDespesas.Libraries.Login;
 using System.Net.Mail;
 using System.Net;
-using ControleDespesas.Libraries.Email;
+using ControleDespesas.Libraries;
 using Microsoft.AspNetCore.Http;
 using ControleDespesas.Repositories.Contracts;
 
@@ -66,7 +64,7 @@ namespace ControleDespesas
             services.AddScoped<Email>();
             services.AddScoped<Sessao>();
             services.AddScoped<LoginUsuario>();
-            services.AddScoped<Libraries.Cookies.Cookie>();
+            services.AddScoped<Libraries.Cookie>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IDespesaRepository, DespesaRepository>();

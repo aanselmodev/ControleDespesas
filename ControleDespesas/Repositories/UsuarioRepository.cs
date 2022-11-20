@@ -37,6 +37,7 @@ namespace ControleDespesas.Repositories
             _banco.Entry(usuario).Property(x => x.Sexo).IsModified = false;
             _banco.Entry(usuario).Property(x => x.Sobrenome).IsModified = false;
             _banco.Entry(usuario).Property(x => x.Email).IsModified = false;
+            _banco.Entry(usuario).Property(x => x.Ativo).IsModified = false;
             _banco.SaveChanges();
         }
 

@@ -1,4 +1,4 @@
-﻿using ControleDespesas.Libraries.Login;
+﻿using ControleDespesas.Libraries;
 using ControleDespesas.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ControleDespesas.Libraries.Filtros
+namespace ControleDespesas.Libraries
 {
     public class UsuarioAutorizacaoAttribute : Attribute, IAuthorizationFilter
     {

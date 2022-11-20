@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControleDespesas.Libraries.Senha
+namespace ControleDespesas.Libraries
 {
     public class Senha
     {
@@ -25,6 +25,18 @@ namespace ControleDespesas.Libraries.Senha
                 result.Append(chars[b % (chars.Length)]);
     
             return result.ToString();
+        }
+
+        public static string Criptografar(string senha)
+        {
+            byte[] senhaCripto = ASCIIEncoding.ASCII.GetBytes(senha);
+            return Convert.ToBase64String(senhaCripto);
+        }
+
+        public static string Descriptografar(string senha)
+        {
+            byte[] senhaDescripto = Convert.FromBase64String(senha);
+            return ASCIIEncoding.ASCII.GetString(senhaDescripto);
         }
     }
 }

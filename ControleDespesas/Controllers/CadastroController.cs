@@ -1,7 +1,4 @@
-﻿using ControleDespesas.Libraries.Cookies;
-using ControleDespesas.Libraries.Email;
-using ControleDespesas.Libraries.Senha;
-using ControleDespesas.Libraries.Sessoes;
+﻿using ControleDespesas.Libraries;
 using ControleDespesas.Models;
 using ControleDespesas.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +13,14 @@ namespace ControleDespesas.Controllers
 {
     public class CadastroController : Controller
     {
-        private IUsuarioRepository _usuarioRepository;
+        private IUsuarioRepository _usuario;
         private Email _email;
         private Sessao _sessao;
         private Cookie _cookie;
 
         public CadastroController(IUsuarioRepository usuarioRepository, Email email, Sessao sessao, Cookie cookie)
         {
-            _usuarioRepository = usuarioRepository;
+            _usuario = usuarioRepository;
             _email = email;
             _sessao = sessao;
             _cookie = cookie;
@@ -40,10 +37,10 @@ namespace ControleDespesas.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_usuarioRepository.ConsultarPorEmail(usuario.Email) == null)
+                if (_usuario.ConsultarPorEmail(usuario.Email) == null)
                 {
                     usuario.Ativo = false;
-                    _usuarioRepository.Cadastrar(usuario);
+                    _usuario.Cadastrar(usuario);
                     
                     string url = $@"https://{_cookie.ObterHost()}/Cadastro/{nameof(Confirmar)}/{usuario.Id}";
 
@@ -65,7 +62,7 @@ namespace ControleDespesas.Controllers
         [HttpGet]
         public IActionResult Confirmar(int id)
         {
-            _usuarioRepository.AtualizarStatusUsuario(id, true);
+            _usuario.AtualizarStatusUsuario(id, true);
 
             return View();
         }

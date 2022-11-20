@@ -1,4 +1,4 @@
-﻿using ControleDespesas.Libraries.Filtros;
+﻿using ControleDespesas.Libraries;
 using ControleDespesas.Models;
 using ControleDespesas.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +27,7 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpGet]
-        public IActionResult Atualizar(int id)
+        public IActionResult AtualizarDados(int id)
         {
             Usuario usuario = _usuario.Consultar(id);
 
@@ -35,25 +35,53 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Usuario usuario)
+        public IActionResult AtualizarDados([FromForm] Usuario usuario)
         {
             ModelState.Remove("Senha");
             ModelState.Remove("ConfirmarSenha");
 
             if (ModelState.IsValid)
             {
-                _usuario.Atualizar(usuario);
-                ViewData["MSG_S"] = "Dados atualizados com sucesso!";
+                _usuario.AtualizarDadosCadastrais(usuario);
+
+                TempData["MSG_S"] = "Dados atualizados com sucesso!";
+
+                return RedirectToAction(nameof(Index), "PainelControle");
             }
 
             return View();
         }
 
         [HttpGet]
-        public IActionResult AtualizarSenha()
+        public IActionResult AtualizarSenha(int id)
         {
             return View();
+        }
 
+        [HttpPost]
+        public IActionResult AtualizarSenha([FromForm]Usuario usuarioForm, int id)
+        {
+            ModelState.Remove("Id");
+            ModelState.Remove("Email");
+            ModelState.Remove("Nome");
+            ModelState.Remove("Sobrenome");
+            ModelState.Remove("Sexo");
+            ModelState.Remove("Ativo");
+
+            if (ModelState.IsValid)
+            {
+                Usuario usuario = _usuario.Consultar(id);
+                usuario.Senha = usuarioForm.Senha;
+
+                _usuario.AtualizarSenha(usuario);
+
+                TempData["MSG_S"] = "Senha atualizada com sucesso!";
+
+                return RedirectToAction(nameof(Index), "PainelControle");
+            }
+
+
+            return View();
         }
     }
 }

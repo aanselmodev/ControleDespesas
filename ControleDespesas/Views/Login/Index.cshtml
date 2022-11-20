@@ -1,41 +1,51 @@
 ﻿@model ControleDespesas.Models.Usuario;
 @{ ViewData["Title"] = "Login"; }
 
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
-</header>
 
-<div class="container" align="center">
-    <div class="py-2 text-center">
-        <i class="bi bi-cash-coin default-img-icon"></i>
-        <h2>Controle de Despesas</h2>
-    </div>
-        <div class="row">
-            <form method="post">
-                <h4 class=" mb-3 fw-normal">Por favor, faça login</h4>
+<div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="py-2 text-center">
+                            <i class="bi bi-person-circle default-img-icon"></i>
+                        </div>
+                        <form method="post">
+                            <h3 class="mb-3">Login</h3>
+                            <div>
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="Email" class="form-label d-flex">E-mail</label>
+                                    <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="Senha" class="form-label d-flex">Senha</label>
+                                    <input type="password" class="form-control" asp-for="Senha" placeholder="*********">
+                                    <span asp-validation-for="Senha" class="text-danger"></span>
+                                </div>
+                                <div align="right">
+                                    <a asp-action="RecuperarSenha" asp-controller="Login" class="text-warning text-decoration-none">Esqueceu a senha? <i class="bi bi-patch-question"></i></a>
+                                </div>
 
-                <div class="col-sm-4 p-2">
-                    <label asp-for="Email" class="form-label d-flex">E-mail</label>
-                    <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+                                @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
+                            </div>
 
-                <div class="col-sm-4 p-2">
-                    <label asp-for="Senha" class="form-label d-flex">Senha</label>
-                    <input type="password" class="form-control" asp-for="Senha" placeholder="*********">
-                    <span asp-validation-for="Senha" class="text-danger"></span>
+                            <br />
+                            <button class="btn btn-primary col-sm-6 p-2 " type="submit">Entrar <i class="bi bi-door-open"></i></button>
+                            <br />
+                            <br />
+                            <a asp-action="Cadastrar" asp-controller="Cadastro" class="text-decoration-none">Não é cadastrado? <i class="bi bi-person-badge"></i></a>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    @{ await Html.RenderPartialAsync("~/Views/Shared/_Mensagem.cshtml");}
-                    <br />
-                </div>
-                <div>
-                    <a asp-action="RecuperarSenha" asp-controller="Login" class="link-secondary">Esqueceu a senha?</a>
-                </div>
-                <br />
-                    <button class="btn btn-primary col-sm-2 p-2 " type="submit">Entrar <i class="bi bi-door-open"></i></button>
-                <br />
-                <br />
-                <a asp-action="Cadastrar" asp-controller="Cadastro" class="link-primary">Não é cadastrado?</a>
-            </form>
+            </div>
         </div>
+    </div>
 </div>
+
+
+
+
+
+

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ControleDespesas.Libraries.Mensagens {
+namespace ControleDespesas.Libraries {
     using System;
     
     
