@@ -1,7 +1,7 @@
-﻿using ControleDespesas.Libraries;
-using ControleDespesas.Models;
-using ControleDespesas.Repositories;
-using ControleDespesas.Repositories.Contracts;
+﻿using AccessManagement.Libraries;
+using AccessManagement.Models;
+using AccessManagement.Repositories;
+using AccessManagement.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -9,23 +9,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ControleDespesas.Controllers
+namespace AccessManagement.Controllers
 {
     public class LoginController : Controller
     {
-        private IUsuarioRepository _usuario;
-        private LoginUsuario _login;
+        private IUserRepository _user;
+        private LoginUser _login;
         private Email _email;
-        private Cookie _cookie;
-        private IRedefinicaoSenhaRepository _redefinicaoSenha;
+        private CookieManagement _cookie;
+        private IPasswordResetRepository _passwordReset;
 
-        public LoginController(IUsuarioRepository usuarioRepository, LoginUsuario login, Email email, Cookie cookie, IRedefinicaoSenhaRepository redefinicaoSenha)
+        public LoginController(IUserRepository user, LoginUser login, Email email, CookieManagement cookie, IPasswordResetRepository passwordReset)
         {
-            _usuario = usuarioRepository;
+            _user = user;
             _login = login;
             _email = email;
             _cookie = cookie;
-            _redefinicaoSenha = redefinicaoSenha;
+            _passwordReset = passwordReset;
         }
 
         [HttpGet]
@@ -35,26 +35,26 @@ namespace ControleDespesas.Controllers
         }
         
         [HttpPost]
-        public IActionResult Index([FromForm]Usuario usuarioForm)
+        public IActionResult Index([FromForm]User inUser)
         {
             ModelState.Remove("Id");
-            ModelState.Remove("Nome");
-            ModelState.Remove("Sobrenome");
-            ModelState.Remove("Sexo"); 
+            ModelState.Remove("Name");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Gender"); 
             ModelState.Remove("ConfirmarSenha");
             ModelState.Remove("Ativo");
 
             if (ModelState.IsValid)
             {
-                Usuario usuario = _usuario.Login(usuarioForm.Email, usuarioForm.Senha);
+                User user = _user.Login(inUser.Email, inUser.Password);
 
-                if (usuario != null)
+                if (user != null)
                 {
-                    if (usuario.Ativo)
+                    if (user.Active)
                     {
-                        _login.Login(usuario);
+                        _login.Login(user);
 
-                        return RedirectToAction("Index", "Home", new { id = usuario.Id });
+                        return RedirectToAction("Index", "Home", new { id = user.Id });
                     }
                     else
                     {
@@ -71,29 +71,29 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecuperarSenha()
+        public IActionResult RecoverPassword()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult RecuperarSenha([FromForm]Usuario usuario)
+        public IActionResult RecoverPassword([FromForm]User inUser)
         {
-            usuario = _usuario.ConsultarPorEmail(usuario.Email);
+            inUser = _user.ReadByEmail(inUser.Email);
             
-            if (usuario != null)
+            if (inUser != null)
             {
-                string url = $@"https://{_cookie.ObterHost()}/Login/{nameof(GerarNovaSenha)}/{usuario.Id}";
-                string codigo = Senha.GerarCodigoRedefinicaoSenha();
+                string url = $@"https://{_cookie.GetHost()}/Login/{nameof(GenerateNewPassword)}/{inUser.Id}";
+                string code = PasswordManagement.GenerateCodePasswordReset();
 
-                _redefinicaoSenha.ExcluirTodosPorIdUsuario(usuario.Id);
-                _redefinicaoSenha.Cadastrar(new RedefinicaoSenha() { IdUsuario = usuario.Id, Codigo = codigo, DataExpiracao = DateTime.Now.AddMinutes(5.0), Senha = usuario.Senha } );
-                
-                _usuario.AtualizarStatusUsuario(usuario.Id, false);
-                
-                _email.EnviarNovaSenha(usuario, url, codigo);
+                _passwordReset.DeleteAllByUserId(inUser.Id);
+                _passwordReset.Create(new PasswordReset() { UserId = inUser.Id, Code = code, ExpirationDate = DateTime.Now.AddMinutes(5.0), Password = inUser.Password } );
 
-                TempData["MSG_S"] = $"Link para gerar uma nova senha enviado para o e-mail {usuario.Email}.";
+                _user.UpdateUserStatus(inUser.Id, false);
+                
+                _email.SendPasswordResetCode(inUser, url, code);
+
+                TempData["MSG_S"] = $"Link para gerar uma nova senha enviado para o e-mail {inUser.Email}.";
 
                 return RedirectToAction("Index", "Login");
             }
@@ -114,32 +114,32 @@ namespace ControleDespesas.Controllers
         }
 
         [HttpGet]
-        public IActionResult GerarNovaSenha()
+        public IActionResult GenerateNewPassword()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult GerarNovaSenha([FromForm]RedefinicaoSenha redefinicaoSenha, int id)
+        public IActionResult GenerateNewPassword([FromForm]PasswordReset passwordReset, int id)
         {
             if (ModelState.IsValid)
             {
-                RedefinicaoSenha redefinicao = _redefinicaoSenha.ConsultarPorIdUsuario(id);
+                PasswordReset resetPassword = _passwordReset.ReadByUserId(id);
 
-                if (redefinicao != null )
+                if (resetPassword != null )
                 {
-                    if (redefinicao.DataExpiracao > DateTime.Now)
+                    if (resetPassword.ExpirationDate > DateTime.Now)
                     {
-                        if (redefinicaoSenha.Codigo == redefinicao.Codigo)
+                        if (passwordReset.Code == resetPassword.Code)
                         {
-                            Usuario usuario = _usuario.Consultar(id);
+                            User user = _user.Read(id);
 
-                            if(usuario.Senha != redefinicaoSenha.Senha)
+                            if(user.Password != passwordReset.Password)
                             {
-                                usuario.Senha = redefinicaoSenha.Senha;
+                                user.Password = passwordReset.Password;
 
-                                _usuario.AtualizarSenha(usuario);
-                                _usuario.AtualizarStatusUsuario(usuario.Id, true);
+                                _user.UpdatePassword(user);
+                                _user.UpdateUserStatus(user.Id, true);
 
                                 TempData["MSG_S"] = "Nova senha cadastrada com sucesso!";
 

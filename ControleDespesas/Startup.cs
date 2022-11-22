@@ -10,15 +10,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
-using ControleDespesas.Database;
-using ControleDespesas.Repositories;
+using AccessManagement.Database;
+using AccessManagement.Repositories;
 using System.Net.Mail;
 using System.Net;
-using ControleDespesas.Libraries;
+using AccessManagement.Libraries;
 using Microsoft.AspNetCore.Http;
-using ControleDespesas.Repositories.Contracts;
+using AccessManagement.Repositories.Contracts;
 
-namespace ControleDespesas
+namespace AccessManagement
 {
     public class Startup
     {
@@ -34,7 +34,7 @@ namespace ControleDespesas
         {
             services.AddControllersWithViews();
 
-            #region Sessão
+            #region Session
 
             services.AddMemoryCache();
             services.AddSession(options => {
@@ -43,7 +43,7 @@ namespace ControleDespesas
 
             #endregion
 
-            #region Repositórios
+            #region Repositories
 
             services.AddHttpContextAccessor();
 
@@ -62,20 +62,18 @@ namespace ControleDespesas
             });
 
             services.AddScoped<Email>();
-            services.AddScoped<Sessao>();
-            services.AddScoped<LoginUsuario>();
-            services.AddScoped<Libraries.Cookie>();
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<SessionManagement>();
+            services.AddScoped<LoginUser>();
+            services.AddScoped<Libraries.CookieManagement>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IDespesaRepository, DespesaRepository>();
-            services.AddScoped<ITipoDespesaRepository, TipoDespesaRepository>();
-            services.AddScoped<IRedefinicaoSenhaRepository, RedefinicaoSenhaRepository>();
+            services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
 
             #endregion
 
-            #region Banco de dados
+            #region Database
 
-            services.AddDbContext<ControleDespesasContext>(options => options.UseSqlServer(Configuration.GetValue<string>("DatabaseConnectionString")));
+            services.AddDbContext<AccessManagementDbContext>(options => options.UseSqlServer(Configuration.GetValue<string>("DatabaseConnectionString")));
 
             #endregion
 

@@ -1,5 +1,5 @@
-﻿@model ControleDespesas.Models.Usuario
-@inject ControleDespesas.Libraries.LoginUsuario _login;
+﻿@model AccessManagement.Models.User
+@inject AccessManagement.Libraries.LoginUser _login;
 
 @{
     ViewData["Title"] = "Home";
@@ -13,7 +13,7 @@
                 <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2">Home</a></li>
                 <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2">Visão geral</a></li>
                 <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2">Despesas</a></li>
-                <li><a asp-action="Index" asp-controller="PainelControle" class="nav-link px-2">Painel de Controle</a></li>
+                <li><a asp-action="Index" asp-controller="ControlPanel" class="nav-link px-2">Painel de Controle</a></li>
             </ul>
 
             <div class="col-md-3 text-end">

@@ -1,0 +1,85 @@
+﻿@model AccessManagement.Models.User;
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
+    <div class="container">
+        <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
+    </div>
+</header>
+
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="py-2 text-center">
+                            <i class="bi bi-file-earmark-person default-img-icon"></i>
+                        </div>
+                        <h3 class=" mb-3">Cadastro</h3>
+                        <p class=" mb-3 fw-normal">Preencha os dados abaixo:</p>
+                        <form method="post">
+                            <div class="container">
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="Name" class="form-label d-flex" style="text-align: left">Nome</label>
+                                    <input asp-for="Name" type="text" class="form-control" placeholder="Insira seu primeiro nome">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="LastName" class="form-label d-flex">Sobrenome</label>
+                                    <input asp-for="LastName" type="text" class="form-control" placeholder="Insira seu sobrenome">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 p-2">
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Gender" value="M">
+                                        <span class="form-check-label">Masculino</span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Gender" value="F">
+                                        <span class="form-check-label">Feminino</span>
+                                    </label>
+                                    <div>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="Email" class="form-label d-flex">E-mail</label>
+                                    <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="Password" class="form-label d-flex">Senha</label>
+                                    <input type="password" class="form-control" asp-for="Password" placeholder="*********">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12 p-2">
+                                    <label asp-for="ConfirmPassword" class="form-label d-flex">Confirme sua senha</label>
+                                    <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="*********">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    @{ await Html.RenderPartialAsync("~/Views/Shared/_Alert.cshtml");}
+                                </div>
+                                <br />
+
+                                <div class="col" align="center">
+                                    <button type="submit" class="btn btn-primary">Cadastrar <i class="bi bi-person-plus"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

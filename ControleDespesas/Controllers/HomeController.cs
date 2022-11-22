@@ -1,22 +1,22 @@
-﻿using ControleDespesas.Libraries;
-using ControleDespesas.Models;
-using ControleDespesas.Repositories;
+﻿using AccessManagement.Libraries;
+using AccessManagement.Models;
+using AccessManagement.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ControleDespesas.Controllers
+namespace AccessManagement.Controllers
 {
-    [UsuarioAutorizacao()]
+    [UserAuth()]
     public class HomeController : Controller
     {
-        private IUsuarioRepository _usuario;
+        private IUserRepository _user;
 
-        public HomeController(IUsuarioRepository usuario)
+        public HomeController(IUserRepository user)
         {
-            _usuario = usuario;
+            _user = user;
         }
 
         [HttpGet]
