@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gestão de Acessos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap-5.2.2-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons-1.10.2/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="bg-light">
+    @RenderBody()
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/sidebars.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+
+</html>
