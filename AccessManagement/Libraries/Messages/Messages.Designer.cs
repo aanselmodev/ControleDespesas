@@ -104,5 +104,14 @@ namespace AccessManagement.Libraries {
                 return ResourceManager.GetString("MSG_E005", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dados atualizados com sucesso!.
+        /// </summary>
+        public static string MSG_S001 {
+            get {
+                return ResourceManager.GetString("MSG_S001", resourceCulture);
+            }
+        }
     }
 }

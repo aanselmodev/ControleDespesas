@@ -12,7 +12,7 @@ namespace AccessManagement.Repositories
     {
         public void Create(User user);
         public User Read(int id);
-        public IPagedList<User> ReadAllUsers(int page, string nameSearchField, OrdinationType ordination);
+        public IPagedList<User> ReadAllUsers(int? page, SearchTypeUser searchTypeUser, string nameSearchField, OrdinationType ordination);
         public User ReadByEmail(string email);
         public void Update(User user);
         public void UpdateRegistrationData(User user);

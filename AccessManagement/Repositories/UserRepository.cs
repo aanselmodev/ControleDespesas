@@ -54,39 +54,67 @@ namespace AccessManagement.Repositories
 
         public User Read(int id)
         {
-           return _db.Users.Find(id);
+            return _db.Users.Find(id);
         }
 
-        public IPagedList<User> ReadAllUsers(int page, string nameSearchField, OrdinationType ordination)
+        public IPagedList<User> ReadAllUsers(int? page, SearchTypeUser searchTypeUser, string searchValue, OrdinationType ordination)
         {
             int quantityPerPage = _config.GetValue<int>("QuantityPerPage");
-            int currentPage = page <= 0 ? 1 : 1;
+            int currentPage = page ?? 1;
 
-            var dbUsers = _db.Users.AsQueryable();
+            var dbUsers = _db.Users.OrderBy(x => x.Id).AsQueryable();
 
-            if (!string.IsNullOrEmpty(nameSearchField))
+            if (!string.IsNullOrWhiteSpace(searchValue))
             {
-                dbUsers = dbUsers.Where(x => x.Name.Contains(nameSearchField.Trim()));
-            }
-            else
-            {
-                switch (ordination)
+                switch (searchTypeUser)
                 {
-                    case OrdinationType.AscendingOrder:
-                        dbUsers = dbUsers.OrderBy(x => x.Name);
+                    case SearchTypeUser.Id:
+                        dbUsers = dbUsers.Where(x => x.Id.ToString().Contains(searchValue.Trim()));
                         break;
-                    case OrdinationType.DescendingOrder:
-                        dbUsers = dbUsers.OrderByDescending(x => x.Name);
-                        break;
-                    case OrdinationType.ActivesOnTop:
-                        dbUsers = dbUsers.OrderBy(x => x.Status == UserStatus.Active);
-                        break;
-                    case OrdinationType.InactivesOnTop:
-                        dbUsers = dbUsers.OrderBy(x => x.Status == UserStatus.Inactive);
+                    case SearchTypeUser.Email:
+                        dbUsers = dbUsers.Where(x => x.Email.Contains(searchValue.Trim()));
                         break;
                     default:
                         break;
-                }
+                } 
+            }
+
+            switch (ordination)
+            {
+                case OrdinationType.AscendingOrder:
+                    switch (searchTypeUser)
+                    {
+                        case SearchTypeUser.Id:
+                            dbUsers = dbUsers.OrderBy(x => x.Id);
+                            break;
+                        case SearchTypeUser.Email:
+                            dbUsers = dbUsers.OrderBy(x => x.Email);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case OrdinationType.DescendingOrder:
+                    switch (searchTypeUser)
+                    {
+                        case SearchTypeUser.Id:
+                            dbUsers = dbUsers.OrderByDescending(x => x.Id);
+                            break;
+                        case SearchTypeUser.Email:
+                            dbUsers = dbUsers.OrderByDescending(x => x.Email);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case OrdinationType.ActivesOnTop:
+                    dbUsers = dbUsers.OrderByDescending(x => x.Status == UserStatus.Active);
+                    break;
+                case OrdinationType.InactivesOnTop:
+                    dbUsers = dbUsers.OrderByDescending(x => x.Status == UserStatus.Inactive);
+                    break;
+                default:
+                    break;
             }
 
             return dbUsers.ToPagedList<User>(currentPage, quantityPerPage);
