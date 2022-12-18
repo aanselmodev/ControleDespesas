@@ -35,7 +35,8 @@ namespace AccessManagement.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(16)")
+                        .HasMaxLength(16);
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -70,8 +71,8 @@ namespace AccessManagement.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(12)")
-                        .HasMaxLength(12);
+                        .HasColumnType("nvarchar(16)")
+                        .HasMaxLength(16);
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

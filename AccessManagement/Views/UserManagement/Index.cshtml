@@ -21,24 +21,25 @@
     <br />
     <br />
 
-    <div class="container">
+    <div class="container row justify-content-center w-75">
         <form method="post">
-            <div class="row justify-content-lg-center d-flex">
-                <div class="col-3">
-                    <input type="text" class="form-control" name="inSearchValue" value="@inSearchValue" placeholder="Digite sua pesquisa..." />
-                </div>
-                <div class="col-2 mb-0 p-0" align="left">
+            <div class="row">
+                <div class="col-2">
                     <select class="form-select" name="inSearchTypeUser" asp-for="@inSearchTypeUser" asp-items="@Html.GetEnumSelectList<SearchTypeUser>()"></select>
                 </div>
-                <div class="col-1 mb-1" align="left">
+                <div class="input-group mb-3 col">
+                    <input type="text" class="form-control" name="inSearchValue" value="@inSearchValue" placeholder="Digite sua pesquisa aqui">
                     <button class="btn btn-secondary bi bi-search" asp-action="Index"></button>
                 </div>
-                <div class="col-2" align="right">
-                    <select class="form-select" name="inOrdinationType" asp-for="@inOrdinationType" asp-items="@Html.GetEnumSelectList<OrdinationType>()"></select>
+                <div class="col-3">
+                    <div align="right">
+                        <select class="form-select" name="inOrdinationType" asp-for="@inOrdinationType" asp-items="@Html.GetEnumSelectList<OrdinationType>()"></select>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
+
     <br />
     <br />
 

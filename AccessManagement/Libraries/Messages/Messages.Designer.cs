@@ -106,6 +106,15 @@ namespace AccessManagement.Libraries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocorreu um erro no sistema. Mensagem original: .
+        /// </summary>
+        public static string MSG_EX1 {
+            get {
+                return ResourceManager.GetString("MSG_EX1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dados atualizados com sucesso!.
         /// </summary>
         public static string MSG_S001 {

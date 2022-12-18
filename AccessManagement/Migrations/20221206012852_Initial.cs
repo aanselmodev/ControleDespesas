@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AccessManagement.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace AccessManagement.Migrations
                     LastName = table.Column<string>(nullable: false),
                     Gender = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(maxLength: 12, nullable: false),
+                    Password = table.Column<string>(nullable: false),
                     Type = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },

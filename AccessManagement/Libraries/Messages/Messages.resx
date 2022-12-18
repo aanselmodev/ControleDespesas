@@ -132,6 +132,9 @@
   <data name="MSG_E005" xml:space="preserve">
     <value>Os campos de senhas não são iguais!</value>
   </data>
+  <data name="MSG_EX1" xml:space="preserve">
+    <value>Ocorreu um erro no sistema. Mensagem original: </value>
+  </data>
   <data name="MSG_S001" xml:space="preserve">
     <value>Dados atualizados com sucesso!</value>
   </data>

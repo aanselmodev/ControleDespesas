@@ -7,7 +7,7 @@
 <header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
     <div class="container">
 
-        @if (Model.Type == UserType.System || Model.Type == UserType.Manager)
+        @if (Model.Type == UserType.System)
         {
             <a asp-action="Index" asp-controller="UserManagement" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
         }
@@ -22,7 +22,7 @@
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-sm-8">
-            <div class="card" style="border-radius: 0rem;">
+            <div class="card">
                 <div class="card-body text-center">
                     <div class="mb-md-5 mt-md-4 pb-5">
                         <div class="py-2 text-center">
@@ -34,12 +34,12 @@
                                 <div class="row justify-content-md-center">
                                     <input type="hidden" asp-for="Id" />
 
-                                    @if (Model.Type == UserType.System || Model.Type == UserType.Manager)
+                                    @if (Model.Type == UserType.System)
                                     {
                                         <div class="row justify-content-md-center">
                                             <div class="col-sm-4 p-2">
                                                 <label asp-for="Type" class="form-label d-flex "></label>
-                                                <select class="form-select" style="border-radius: 0rem;" asp-for="Type" asp-items="@Html.GetEnumSelectList<UserType>()"></select>
+                                                <select class="form-select" asp-for="Type" asp-items="@Html.GetEnumSelectList<UserType>()"></select>
                                             </div>
                                             <div class="col-sm-4 p-2">
                                                 <label asp-for="Status" class="form-label d-flex "></label>

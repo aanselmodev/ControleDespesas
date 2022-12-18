@@ -69,60 +69,6 @@
                         </div>
                     </div>
                     break;
-                case AccessManagement.Libraries.UserType.Manager:
-                    break;
-                case AccessManagement.Libraries.UserType.Customer:
-                    <div class="col-md-6">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="py-2">
-                                    <i class="bi bi-person-gear default-icon-medium"></i>
-                                </div>
-                                <h4 class="card-subtitle mb-2 text-muted">Dados pessoais</h4>
-                                <p class="card-text">Altere seus dados cadastrais.</p>
-                                <a asp-action="UpdateRegistrationData" asp-controller="UserManagement" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Alterar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="py-2">
-                                    <i class="bi bi-file-earmark-lock default-icon-medium"></i>
-                                </div>
-                                <h4 class="card-subtitle mb-2 text-muted">Senha</h4>
-                                <p class="card-text">Altere sua senha de acesso.</p>
-                                <a asp-action="UpdatePassword" asp-controller="UserManagement" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Alterar</a>
-                            </div>
-                        </div>
-                    </div>
-                    break;
-                case AccessManagement.Libraries.UserType.Employee:
-                    <div class="col-md-6">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="py-2">
-                                    <i class="bi bi-person-gear default-icon-medium"></i>
-                                </div>
-                                <h4 class="card-subtitle mb-2 text-muted">Dados pessoais</h4>
-                                <p class="card-text">Altere seus dados cadastrais.</p>
-                                <a asp-action="UpdateRegistrationData" asp-controller="UserManagement" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Alterar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="py-2">
-                                    <i class="bi bi-file-earmark-lock default-icon-medium"></i>
-                                </div>
-                                <h4 class="card-subtitle mb-2 text-muted">Senha</h4>
-                                <p class="card-text">Altere sua senha de acesso.</p>
-                                <a asp-action="UpdatePassword" asp-controller="UserManagement" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Alterar</a>
-                            </div>
-                        </div>
-                    </div>
-                    break;
                 default:
                     break;
             }

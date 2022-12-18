@@ -20,40 +20,61 @@ namespace AccessManagement.Controllers
         }
 
         public IActionResult Index(int? page, string inSearchValue, SearchTypeUser inSearchTypeUser, OrdinationType inOrdinationType)
-        { 
-            IPagedList<User> usersPagedList = _user.ReadAllUsers(page, inSearchTypeUser, inSearchValue, inOrdinationType);
+        {
+            try
+            {
+                IPagedList<User> usersPagedList = _user.ReadAllUsers(page, inSearchTypeUser, inSearchValue, inOrdinationType);
 
-            TempData["inSearchValue"] = inSearchValue;
-            TempData["inSearchTypeUser"] = inSearchTypeUser;
-            TempData["OrdinationType"] = inOrdinationType;
+                TempData["inSearchValue"] = inSearchValue;
+                TempData["inSearchTypeUser"] = inSearchTypeUser;
+                TempData["OrdinationType"] = inOrdinationType;
 
-            return View(usersPagedList);
+                return View(usersPagedList);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
+            }
         }
 
         [HttpGet]
         public IActionResult UpdateRegistrationData(int id)
         {
-            User user = _user.Read(id);
+            try
+            {
+                User user = _user.Read(id);
 
-            return View(user);
+                return View(user);
+            }
+            catch (Exception ex )
+            {
+                throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
+            }
         }
 
         [HttpPost]
         public IActionResult UpdateRegistrationData([FromForm] User inUser)
         {
-            ModelState.Remove("Password");
-            ModelState.Remove("ConfirmPassword");
-
-            if (ModelState.IsValid)
+            try
             {
-                _user.UpdateRegistrationData(inUser);
+                ModelState.Remove("Password");
+                ModelState.Remove("ConfirmPassword");
 
-                TempData["MSG_S"] = Messages.MSG_S001;
+                if (ModelState.IsValid)
+                {
+                    _user.UpdateRegistrationData(inUser);
 
-                return RedirectToAction(nameof(Index), "UserManagement");
+                    TempData["MSG_S"] = Messages.MSG_S001;
+
+                    return RedirectToAction(nameof(Index), "UserManagement");
+                }
+
+                return View();
             }
-
-            return View();
+            catch (Exception ex)
+            {
+                throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
+            }
         }
 
         [HttpGet]
@@ -65,36 +86,50 @@ namespace AccessManagement.Controllers
         [HttpPost]
         public IActionResult UpdatePassword([FromForm] User inUser, int id)
         {
-            ModelState.Remove("Id");
-            ModelState.Remove("Email");
-            ModelState.Remove("Name");
-            ModelState.Remove("LastName");
-            ModelState.Remove("Gender");
-            ModelState.Remove("Active");
-
-            if (ModelState.IsValid)
+            try
             {
-                User user = _user.Read(id);
-                user.Password = inUser.Password;
+                ModelState.Remove("Id");
+                ModelState.Remove("Email");
+                ModelState.Remove("Name");
+                ModelState.Remove("LastName");
+                ModelState.Remove("Gender");
+                ModelState.Remove("Active");
 
-                _user.UpdatePassword(user);
+                if (ModelState.IsValid)
+                {
+                    User user = _user.Read(id);
+                    user.Password = inUser.Password;
 
-                TempData["MSG_S"] = "Senha atualizada com sucesso!";
+                    _user.UpdatePassword(user);
 
-                return RedirectToAction(nameof(Index), "ControlPanel");
+                    TempData["MSG_S"] = "Senha atualizada com sucesso!";
+
+                    return RedirectToAction(nameof(Index), "ControlPanel");
+                }
+
+                return View();
             }
-
-            return View();
+            catch (Exception ex)
+            {
+                throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
+            }
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            _user.Delete(id);
+            try
+            {
+                _user.Delete(id);
 
-            TempData["MSG_S"] = "Usuário excluído com sucesso!";
+                TempData["MSG_S"] = "Usuário excluído com sucesso!";
 
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
+            }
         }
 
     }

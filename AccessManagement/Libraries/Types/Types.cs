@@ -12,13 +12,7 @@ namespace AccessManagement.Libraries
         [Display(Name = "Sistema")]
         System = 0,
         [Display(Name = "Usuário")]
-        UserDefault = 1,
-        [Display(Name = "Gerente")]
-        Manager = 2,
-        [Display(Name = "Cliente")]
-        Customer = 3,
-        [Display(Name = "Funcionário")]
-        Employee = 4
+        UserDefault = 1
     }
 
     public enum UserStatus
@@ -40,9 +34,13 @@ namespace AccessManagement.Libraries
         [Display(Name = "Ordem decrescente")]
         DescendingOrder = 1,
         [Display(Name = "Ativos")]
-        ActivesOnTop = 2,
+        ActiveOnTop = 2,
         [Display(Name = "Inativos")]
-        InactivesOnTop = 3
+        InactiveOnTop = 3,
+        [Display(Name = "Pendentes")]
+        PendingOnTop = 4,
+        [Display(Name = "Bloqueados")]
+        BlockedOnTop = 5
     }
 
     public enum SearchTypeUser
@@ -50,6 +48,11 @@ namespace AccessManagement.Libraries
         [Display(Name = "Id")]
         Id = 0,
         [Display(Name = "Email")]
-        Email = 1
+        Email = 1,
+        [Display(Name = "Nome")]
+        Name = 2,
+        [Display(Name = "Sobrenome")]
+        LastName = 3
     }
-}
+
+}   

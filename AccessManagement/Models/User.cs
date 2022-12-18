@@ -11,9 +11,6 @@ namespace AccessManagement.Models
 {
     public class User
     {
-        private string _password;
-        private string _confirmPassword;
-
         [Key]
         [Display(Name = "Id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -40,24 +37,16 @@ namespace AccessManagement.Models
         
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(8, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E004")]
-        [MaxLength(12, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E003")]
-        public string Password
-        {
-            get => _password;
-            set => _password = AccessManagement.Libraries.PasswordManagement.Encrypt(value);
-        }
-
+        [MaxLength(16, ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E003")]
+        public string Password { get; set; }
+       
         [NotMapped]
         [JsonIgnore]
         [Display(Name = "Confirmar a Senha")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E001")]
         [Compare("Password", ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E005")]
         #nullable enable
-        public string? ConfirmPassword
-        {
-            get => _confirmPassword;
-            set => _confirmPassword = AccessManagement.Libraries.PasswordManagement.Encrypt(value);
-        }
+        public string? ConfirmPassword { get; set; }
 
         [JsonIgnore]
         [Display(Name = "Tipo")]

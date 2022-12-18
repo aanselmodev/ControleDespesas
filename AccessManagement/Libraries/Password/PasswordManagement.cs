@@ -1,4 +1,5 @@
 ﻿using AccessManagement.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace AccessManagement.Libraries
 {
     public class PasswordManagement
     {
+        private IConfiguration _config;
+
+        public PasswordManagement(IConfiguration config)
+        {
+            _config = config;
+        }
+
         public static string GenerateCodePasswordReset()
         {
             char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
@@ -26,17 +34,6 @@ namespace AccessManagement.Libraries
     
             return result.ToString();
         }
-
-        public static string Encrypt(string password)
-        {
-            byte[] encryptedPassword = ASCIIEncoding.ASCII.GetBytes(password);
-            return Convert.ToBase64String(encryptedPassword);
-        }
-
-        public static string Decrypt(string password)
-        {
-            byte[] decryptedPassword = Convert.FromBase64String(password);
-            return ASCIIEncoding.ASCII.GetString(decryptedPassword);
-        }
+       
     }
 }
