@@ -1,0 +1,102 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Alteração de Dados Cadastrais";
+}
+
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
+    <div class="container">
+
+        @if (Model.Type == UserType.System)
+        {
+            <a asp-action="Index" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
+        }
+
+    </div>
+</header>
+
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="py-2 text-center">
+                            <i class="bi bi-file-earmark-person default-img-icon"></i>
+                        </div>
+                        <h3 class=" mb-3">Atualizar dados cadastrais</h3>
+                        <div class="container">
+                            <form method="post">
+                                <div class="row justify-content-md-center">
+                                    <input type="hidden" asp-for="Id" />
+
+                                    @if (Model.Type == UserType.System)
+                                    {
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-sm-4 p-2">
+                                                <label asp-for="Type" class="form-label d-flex "></label>
+                                                <select class="form-select" asp-for="Type" asp-items="@Html.GetEnumSelectList<UserType>()"></select>
+                                            </div>
+                                            <div class="col-sm-4 p-2">
+                                                <label asp-for="Status" class="form-label d-flex "></label>
+                                                <select class="form-select" asp-for="Status" asp-items="@Html.GetEnumSelectList<UserStatus>()"></select>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-sm-6 p-2">
+                                            <label asp-for="Name" class="form-label d-flex">Nome</label>
+                                            <input asp-for="Name" type="text" class="form-control">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="col-sm-6 p-2">
+                                            <label asp-for="LastName" class="form-label d-flex">Sobrenome</label>
+                                            <input asp-for="LastName" type="text" class="form-control">
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-12 p-2">
+                                        <label class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" asp-for="Gender" value="M">
+                                            <span class="form-check-label">Masculino</span>
+                                        </label>
+                                        <label class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" asp-for="Gender" value="F">
+                                            <span class="form-check-label">Feminino</span>
+                                        </label>
+                                        <div>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-8 p-2">
+                                        <label asp-for="Email" class="form-label d-flex">E-mail</label>
+                                        <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        @{ await Html.RenderPartialAsync("~/Views/Shared/_Alert.cshtml");}
+                                    </div>
+
+                                    <br />
+                                    <div class="col" align="center">
+                                        <button type="submit" class="btn btn-primary">Atualizar <i class="bi bi-save"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
