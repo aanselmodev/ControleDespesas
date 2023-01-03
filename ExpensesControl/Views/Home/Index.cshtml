@@ -11,16 +11,16 @@
                         <div class="py-2 text-center">
                             <i class="bi bi-person-circle default-img-icon"></i>
                         </div>
-                        <h3 class="mb-3">Login</h3>
+                        <h3 class="mb-3">login</h3>
                         <form method="post">
                             <div>
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="Email" class="form-label d-flex">E-mail</label>
+                                    <label asp-for="Email" class="form-label d-flex">e-mail</label>
                                     <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="Password" class="form-label d-flex">Senha</label>
+                                    <label asp-for="Password" class="form-label d-flex">senha</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control password-field" asp-for="Password" placeholder="*********" />
                                         <a class="btn btn-secondary bi bi-eye btn-show-password"></a>
@@ -28,7 +28,7 @@
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <div align="right" class="px-2">
-                                    <a asp-action="RecoverPassword" asp-controller="Password" asp-area="Access" class="text-warning text-decoration-none">Esqueceu a senha? <i class="bi bi-patch-question"></i></a>
+                                    <a asp-action="RecoverPassword" asp-controller="Password" asp-area="Access" class="text-warning text-decoration-none">esqueceu a senha? <i class="bi bi-patch-question"></i></a>
                                 </div>
                                 <br />
 
@@ -36,10 +36,10 @@
                             </div>
 
                             <br />
-                            <button class="btn btn-primary" type="submit">Entrar <i class="bi bi-door-open"></i></button>
+                            <button class="btn btn-primary" type="submit">entrar <i class="bi bi-door-open"></i></button>
                             <br />
                             <br />
-                            <a asp-action="Index" asp-controller="Registration" asp-area="Access" class="text-decoration-none">Não é cadastrado? <i class="bi bi-person-badge"></i></a>
+                            <a asp-action="Index" asp-controller="Registration" asp-area="Access" class="text-decoration-none">não é cadastrado? <i class="bi bi-person-badge"></i></a>
                         </form>
                     </div>
                 </div>

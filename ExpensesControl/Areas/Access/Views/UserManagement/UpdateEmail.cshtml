@@ -1,5 +1,5 @@
 ﻿@model ExpensesControl.Models.User;
-@{ ViewData["Title"] = "Atualizar a Senha"; }
+@{ ViewData["Title"] = "Alterar E-mail"; }
 
 
 <header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
@@ -15,27 +15,17 @@
                 <div class="card-body p-2 text-center">
                     <div class="mb-md-5 mt-md-4 pb-5">
                         <div class="py-2 text-center">
-                            <i class="bi bi-file-earmark-lock default-img-icon"></i>
+                            <i class="bi bi-person-lines-fill default-img-icon"></i>
                         </div>
-                        <h3 class=" mb-3">atualizar senha</h3>
+                        <h3 class=" mb-3">alterar e-mail</h3>
                         <form method="post">
                             <input type="hidden" asp-for="Id" />
                             <div class="col-sm-12 p-2">
-                                <label asp-for="Password" class="form-label d-flex">nova senha</label>
+                                <label asp-for="Email" class="form-label d-flex">digite o novo e-mail:</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control password-field" asp-for="Password" placeholder="*********" />
-                                    <a class="btn btn-secondary bi bi-eye btn-show-password"></a>
+                                    <input type="email" class="form-control password-field" asp-for="Email" placeholder="" />
                                 </div>
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-sm-12 p-2">
-                                <label asp-for="ConfirmPassword" class="form-label d-flex">confirme a nova senha</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control confirm-password-field" asp-for="ConfirmPassword" placeholder="*********">
-                                    <a class="btn btn-secondary bi bi-eye btn-show-confirm-password"></a>
-                                </div>
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
 
                             <div class="col-sm-12">

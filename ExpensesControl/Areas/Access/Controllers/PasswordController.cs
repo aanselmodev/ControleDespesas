@@ -69,14 +69,6 @@ namespace ExpensesControl.Areas.Access.Controllers
         }
 
         [HttpGet]
-        public IActionResult Logout()
-        {
-            _login.Logout();
-
-            return RedirectToAction("Index", "Home", new { area = "" });
-        }
-
-        [HttpGet]
         public IActionResult GenerateNewPassword()
         {
             return View();

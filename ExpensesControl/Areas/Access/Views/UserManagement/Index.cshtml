@@ -16,7 +16,7 @@
 <div class="container" align="center">
     <div class="p text-center">
         <i class="bi bi-person-gear default-img-icon"></i>
-        <h3>Usuários</h3>
+        <h3>usuários</h3>
     </div>
     <br />
     <br />
@@ -28,7 +28,7 @@
                     <select class="form-select" name="inSearchTypeUser" asp-for="@inSearchTypeUser" asp-items="@Html.GetEnumSelectList<SearchTypeUser>()"></select>
                 </div>
                 <div class="input-group mb-3 col">
-                    <input type="text" class="form-control" name="inSearchValue" value="@inSearchValue" placeholder="Digite sua pesquisa aqui">
+                    <input type="text" class="form-control" name="inSearchValue" value="@inSearchValue" placeholder="digite sua pesquisa aqui">
                     <button class="btn btn-secondary bi bi-search" asp-action="Index"></button>
                 </div>
                 <div class="col-3">
@@ -57,7 +57,7 @@
                     <thead>
                         <tr>
                             <th scope="col">@Html.DisplayNameFor(model => model.First().Id)</th>
-                            <th scope="col">Nome completo</th>
+                            <th scope="col">nome</th>
                             <th scope="col">@Html.DisplayNameFor(model => model.First().Email)</th>
                             <th scope="col">@Html.DisplayNameFor(model => model.First().Status)</th>
                             <th scope="col"></th>
@@ -75,16 +75,16 @@
                                         switch (user.Status)
                                         {
                                             case ExpensesControl.Libraries.UserStatus.Inactive:
-                                                <span class="p-1 text-secondary">Inativo</span>
+                                                <span class="p-1 text-secondary">inativo</span>
                                                 break;
                                             case ExpensesControl.Libraries.UserStatus.Active:
-                                                <span class="p-1 text-success">Ativo</span>
+                                                <span class="p-1 text-success">ativo</span>
                                                 break;
                                             case ExpensesControl.Libraries.UserStatus.Pending:
-                                                <span class="p-1 text-warning">Pendente</span>
+                                                <span class="p-1 text-warning">pendente</span>
                                                 break;
                                             case ExpensesControl.Libraries.UserStatus.Blocked:
-                                                <span class="p-1 text-danger">Bloqueado</span>
+                                                <span class="p-1 text-danger">bloqueado</span>
                                                 break;
                                             default:
                                                 break;
@@ -92,8 +92,8 @@
                                     }
                                 </td>
                                 <td scope="row" align="right">
-                                    <a asp-action="UpdateRegistrationData" asp-route-id="@user.Id" class="btn btn-secondary bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Alterar dados cadastrais"></a>
-                                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger bi bi-person-x" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir usuário"></a>
+                                    <a asp-action="UpdateRegistrationData" asp-route-id="@user.Id" class="btn btn-secondary bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="alterar dados cadastrais"></a>
+                                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger bi bi-person-x" data-bs-toggle="tooltip" data-bs-placement="top" title="excluir usuário"></a>
                                 </td>
                             </tr>
                         }
@@ -104,7 +104,7 @@
         }
         else
         {
-            <span>Nenhum usuário encontrado!</span>
+            <span>menhum usuário encontrado!</span>
         }
     }
 </div>

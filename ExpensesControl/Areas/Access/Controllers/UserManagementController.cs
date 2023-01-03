@@ -60,6 +60,7 @@ namespace ExpensesControl.Controllers
             {
                 ModelState.Remove("Password");
                 ModelState.Remove("ConfirmPassword");
+                ModelState.Remove("Email");
 
                 if (ModelState.IsValid)
                 {
@@ -131,6 +132,46 @@ namespace ExpensesControl.Controllers
             {
                 throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
             }
+        }
+
+        [HttpGet]
+        public IActionResult UpdateEmail(int id)
+        {
+            User user = _user.Read(id);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateEmail([FromForm]User inUser)
+        {
+            try
+            {
+                ModelState.Remove("Id");
+                ModelState.Remove("Password");
+                ModelState.Remove("Name");
+                ModelState.Remove("LastName");
+                ModelState.Remove("Gender");
+                ModelState.Remove("Active");
+
+                if (ModelState.IsValid)
+                {
+                    //TODO: Criar validação de igualdade do e-mail anterior ao digitado
+                    //TODO: Enviar e-mail para o e-mail novo com inteligência de confirmação para ativar usuário
+
+                    inUser.Status = UserStatus.Pending;
+                    _user.UpdateEmail(inUser);  
+                }
+
+                TempData["MSG_S"] = "E-mail alterado com sucesso! Será enviado um e-mail de confirmação para formalizar a alteração.";
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
+            }
+
+            return View();
         }
     }
 }

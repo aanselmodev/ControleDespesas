@@ -118,24 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MSG_E001" xml:space="preserve">
-    <value>O campo '{0}' é de preenchimento obrigatório!</value>
+    <value>o campo '{0}' é de preenchimento obrigatório!</value>
   </data>
   <data name="MSG_E002" xml:space="preserve">
-    <value>O valor do campo '{0}' é inválido!</value>
+    <value>o valor do campo '{0}' é inválido!</value>
   </data>
   <data name="MSG_E003" xml:space="preserve">
-    <value>O campo '{0}' deve ter no máximo '{1}' caracteres!</value>
+    <value>o campo '{0}' deve ter no máximo '{1}' caracteres!</value>
   </data>
   <data name="MSG_E004" xml:space="preserve">
-    <value>O campo '{0}' deve ter no mínimo '{1}' caracteres!</value>
+    <value>o campo '{0}' deve ter no mínimo '{1}' caracteres!</value>
   </data>
   <data name="MSG_E005" xml:space="preserve">
-    <value>Os campos de senhas não são iguais!</value>
+    <value>os campos de senhas não são iguais!</value>
   </data>
   <data name="MSG_EX1" xml:space="preserve">
-    <value>Ocorreu um erro no sistema. Mensagem original: </value>
+    <value>ocorreu um erro no sistema. mensagem original: </value>
   </data>
   <data name="MSG_S001" xml:space="preserve">
-    <value>Dados atualizados com sucesso!</value>
+    <value>dados atualizados com sucesso!</value>
   </data>
 </root>

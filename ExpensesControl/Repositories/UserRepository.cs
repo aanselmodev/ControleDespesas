@@ -32,6 +32,7 @@ namespace ExpensesControl.Repositories
         {
             _db.Update(user);
             _db.Entry(user).Property(x => x.Password).IsModified = false;
+            _db.Entry(user).Property(x => x.Email).IsModified = false;
             _db.SaveChanges();
         }
 
@@ -45,6 +46,16 @@ namespace ExpensesControl.Repositories
             _db.Entry(user).Property(x => x.LastName).IsModified = false;
             _db.Entry(user).Property(x => x.Email).IsModified = false;
             _db.Entry(user).Property(x => x.Status).IsModified = false;
+            _db.SaveChanges();
+        }
+
+        public void UpdateEmail(User user)
+        {
+            _db.Update(user);
+            _db.Entry(user).Property(x => x.Name).IsModified = false;
+            _db.Entry(user).Property(x => x.Gender).IsModified = false;
+            _db.Entry(user).Property(x => x.LastName).IsModified = false;
+            _db.Entry(user).Property(x => x.Password).IsModified = false;
             _db.SaveChanges();
         }
 

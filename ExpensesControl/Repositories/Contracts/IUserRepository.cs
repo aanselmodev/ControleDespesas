@@ -20,5 +20,6 @@ namespace ExpensesControl.Repositories
         public void Delete(int id);
         public User Login(string email, string password);
         public void UpdateUserStatus(int id, UserStatus status);
+        public void UpdateEmail(User user);
     }
 }

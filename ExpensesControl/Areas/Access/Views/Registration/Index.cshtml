@@ -5,7 +5,7 @@
 
 <header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
     <div class="container">
-        <a asp-action="Index" asp-controller="Home" asp-area="" class="btn btn-primary">Voltar <i class="bi bi-arrow-bar-left"></i></a>
+        <a asp-action="Index" asp-controller="Home" asp-area="" class="btn btn-primary">voltar <i class="bi bi-arrow-bar-left"></i></a>
     </div>
 </header>
 
@@ -18,30 +18,30 @@
                         <div class="py-2 text-center">
                             <i class="bi bi-file-earmark-person default-img-icon"></i>
                         </div>
-                        <h3 class=" mb-3">Cadastro</h3>
-                        <p class=" mb-3 fw-normal">Preencha os dados abaixo:</p>
+                        <h3 class=" mb-3">cadastro</h3>
+                        <p class=" mb-3 fw-normal">preencha os dados abaixo:</p>
                         <form method="post">
                             <div class="container">
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="Name" class="form-label d-flex" style="text-align: left">Nome</label>
-                                    <input asp-for="Name" type="text" class="form-control" placeholder="Insira seu primeiro nome">
+                                    <label asp-for="Name" class="form-label d-flex" style="text-align: left">nome</label>
+                                    <input asp-for="Name" type="text" class="form-control" placeholder="insira seu primeiro nome">
                                     <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
 
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="LastName" class="form-label d-flex">Sobrenome</label>
-                                    <input asp-for="LastName" type="text" class="form-control" placeholder="Insira seu sobrenome">
+                                    <label asp-for="LastName" class="form-label d-flex">sobrenome</label>
+                                    <input asp-for="LastName" type="text" class="form-control" placeholder="insira seu sobrenome">
                                     <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
 
                                 <div class="col-sm-12 p-2">
                                     <label class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" asp-for="Gender" value="M">
-                                        <span class="form-check-label">Masculino</span>
+                                        <span class="form-check-label">masculino</span>
                                     </label>
                                     <label class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" asp-for="Gender" value="F">
-                                        <span class="form-check-label">Feminino</span>
+                                        <span class="form-check-label">feminino</span>
                                     </label>
                                     <div>
                                         <span asp-validation-for="Gender" class="text-danger"></span>
@@ -49,13 +49,13 @@
                                 </div>
 
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="Email" class="form-label d-flex">E-mail</label>
+                                    <label asp-for="Email" class="form-label d-flex">e-mail</label>
                                     <input type="email" class="form-control" asp-for="Email" placeholder="nome@exemplo.com">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
 
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="Password" class="form-label d-flex">Senha</label>
+                                    <label asp-for="Password" class="form-label d-flex">senha</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control password-field" asp-for="Password" placeholder="*********" />
                                         <a class="btn btn-secondary bi bi-eye btn-show-password"></a>
@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="col-sm-12 p-2">
-                                    <label asp-for="ConfirmPassword" class="form-label d-flex">Confirme sua senha</label>
+                                    <label asp-for="ConfirmPassword" class="form-label d-flex">confirme sua senha</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control confirm-password-field" asp-for="ConfirmPassword" placeholder="*********" />
                                         <a class="btn btn-secondary bi bi-eye btn-show-confirm-password"></a>
@@ -79,7 +79,7 @@
                                 <br />
 
                                 <div class="col pt-4" align="center">
-                                    <button type="submit" class="btn btn-primary">Cadastrar <i class="bi bi-person-plus"></i></button>
+                                    <button type="submit" class="btn btn-primary">cadastrar <i class="bi bi-person-plus"></i></button>
                                 </div>
                             </div>
                         </form>
