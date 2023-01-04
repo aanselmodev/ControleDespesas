@@ -18,7 +18,7 @@ namespace ExpensesControl.Repositories
         public void UpdateRegistrationData(User user);
         public void UpdatePassword(User user);
         public void Delete(int id);
-        public User Login(string email, string password);
+        public User Login(User user);
         public void UpdateUserStatus(int id, UserStatus status);
         public void UpdateEmail(User user);
     }

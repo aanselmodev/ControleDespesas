@@ -46,13 +46,13 @@ namespace ExpensesControl.Controllers
 
                     _email.SendRegistrationConfirmation(inUser, url);
 
-                    TempData["MSG_S"] = $"Cadastro realizado com sucesso! E-mail de confirmação enviado para {inUser.Email}";
+                    TempData["MSG_S"] = $"cadastro realizado com sucesso! E-mail de confirmação enviado para {inUser.Email}";
 
                     return RedirectToAction("Index", "Home", new { area = "" });
                 }
                 else
                 {
-                    ViewData["MSG_E"] = "E-mail já cadastrado!";
+                    ViewData["MSG_E"] = "e-mail já cadastrado!";
                 }
             }
 

@@ -9,9 +9,7 @@ namespace ExpensesControl.Libraries
 {
     public class Cryptography
     {
-        const string salt = "AAi7#@";
-
-        public static string Encrypt(string password)
+        public static string Encrypt(string password, string salt)
         {
             try
             {

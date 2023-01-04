@@ -56,13 +56,13 @@ namespace ExpensesControl.Areas.Access.Controllers
 
                 _email.SendPasswordResetCode(inUser, url, code);
 
-                TempData["MSG_S"] = $"Link para gerar uma nova senha enviado para o e-mail {inUser.Email}.";
+                TempData["MSG_S"] = $"link para gerar uma nova senha enviado para o e-mail {inUser.Email}.";
 
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
             else
             {
-                ViewData["MSG_E"] = $"E-mail não cadastrado.";
+                ViewData["MSG_E"] = $"e-mail não cadastrado.";
             }
 
             return View();
@@ -96,28 +96,28 @@ namespace ExpensesControl.Areas.Access.Controllers
                                 _user.UpdatePassword(user);
                                 _user.UpdateUserStatus(user.Id, UserStatus.Active);
 
-                                TempData["MSG_S"] = "Nova senha cadastrada com sucesso!";
+                                TempData["MSG_S"] = "nova senha cadastrada com sucesso!";
 
                                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
                             }
                             else
                             {
-                                ViewData["MSG_E"] = "A nova senha não pode ser igual a anterior.";
+                                ViewData["MSG_E"] = "a nova senha não pode ser igual a anterior.";
                             }
                         }
                         else
                         {
-                            ViewData["MSG_E"] = "O código informado é inválido.";
+                            ViewData["MSG_E"] = "o código informado é inválido.";
                         }
                     }
                     else
                     {
-                        ViewData["MSG_E"] = "O código enviado está expirado.";
+                        ViewData["MSG_E"] = "o código enviado está expirado.";
                     }
                 }
                 else
                 {
-                    ViewData["MSG_E"] = "O usuário para redefinir a senha não existe.";
+                    ViewData["MSG_E"] = "o usuário para redefinir a senha não existe.";
                 }
             }
 

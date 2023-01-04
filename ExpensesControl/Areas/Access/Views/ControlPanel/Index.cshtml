@@ -44,6 +44,18 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="py-2">
+                                    <i class="bi bi-file-earmark-lock default-icon-medium"></i>
+                                </div>
+                                <h4 class="card-subtitle mb-2 text-muted">senha</h4>
+                                <p class="card-text">altere sua senha de acesso.</p>
+                                <a asp-action="UpdatePassword" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="py-2">
                                     <i class="bi bi-person-lines-fill default-icon-medium"></i>
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">e-mail</h4>

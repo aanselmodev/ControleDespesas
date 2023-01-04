@@ -9,49 +9,49 @@ namespace ExpensesControl.Libraries
 {
     public enum UserType
     {
-        [Display(Name = "Sistema")]
+        [Display(Name = "sistema")]
         System = 0,
-        [Display(Name = "Usuário")]
+        [Display(Name = "usuário")]
         UserDefault = 1
     }
 
     public enum UserStatus
     {
-        [Display(Name = "Inativo")]
+        [Display(Name = "inativo")]
         Inactive = 0,
-        [Display(Name = "Ativo")]
+        [Display(Name = "ativo")]
         Active = 1,
-        [Display(Name = "Pendente")]
+        [Display(Name = "pendente")]
         Pending = 2,
-        [Display(Name = "Bloqueado")]
+        [Display(Name = "bloqueado")]
         Blocked = 3
     }
 
     public enum OrdinationType
     {
-        [Display(Name = "Ordem crescente")]
+        [Display(Name = "ordem crescente")]
         AscendingOrder = 0,
-        [Display(Name = "Ordem decrescente")]
+        [Display(Name = "ordem decrescente")]
         DescendingOrder = 1,
-        [Display(Name = "Ativos")]
+        [Display(Name = "ativos")]
         ActiveOnTop = 2,
-        [Display(Name = "Inativos")]
+        [Display(Name = "inativos")]
         InactiveOnTop = 3,
-        [Display(Name = "Pendentes")]
+        [Display(Name = "pendentes")]
         PendingOnTop = 4,
-        [Display(Name = "Bloqueados")]
+        [Display(Name = "bloqueados")]
         BlockedOnTop = 5
     }
 
     public enum SearchTypeUser
     { 
-        [Display(Name = "Id")]
+        [Display(Name = "id")]
         Id = 0,
-        [Display(Name = "Email")]
+        [Display(Name = "e-mail")]
         Email = 1,
-        [Display(Name = "Nome")]
+        [Display(Name = "nome")]
         Name = 2,
-        [Display(Name = "Sobrenome")]
+        [Display(Name = "sobrenome")]
         LastName = 3
     }
 

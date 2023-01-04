@@ -14,10 +14,14 @@ namespace ExpensesControl.Controllers
     public class UserManagementController : Controller
     {
         private IUserRepository _user;
+        private Email _email;
+        private CookieManagement _cookie;
 
-        public UserManagementController(IUserRepository user)
+        public UserManagementController(IUserRepository user, Email email, CookieManagement cookie)
         {
             _user = user;
+            _email = email;
+            _cookie = cookie;
         }
 
         public IActionResult Index(int? page, string inSearchValue, SearchTypeUser inSearchTypeUser, OrdinationType inOrdinationType)
@@ -149,6 +153,7 @@ namespace ExpensesControl.Controllers
             {
                 ModelState.Remove("Id");
                 ModelState.Remove("Password");
+                ModelState.Remove("ConfirmPassword");
                 ModelState.Remove("Name");
                 ModelState.Remove("LastName");
                 ModelState.Remove("Gender");
@@ -156,20 +161,41 @@ namespace ExpensesControl.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    //TODO: Criar validação de igualdade do e-mail anterior ao digitado
-                    //TODO: Enviar e-mail para o e-mail novo com inteligência de confirmação para ativar usuário
+                    User user = _user.Read(inUser.Id);
 
-                    inUser.Status = UserStatus.Pending;
-                    _user.UpdateEmail(inUser);  
+                    if (user.Email != inUser.Email)
+                    {
+                        user.Email = inUser.Email;
+                        user.Status = UserStatus.Pending;
+
+                        _user.UpdateEmail(user);
+
+                        string url = $@"https://{_cookie.GetHost()}/Access/UserManagement/{nameof(ConfirmUpdateEmail)}/{user.Id}";
+
+                        _email.SendUpdateEmailConfirmation(user, url);
+
+                        TempData["MSG_S"] = $"e-mail alterado com sucesso! será enviado um e-mail de confirmação para {inUser.Email} para formalizar a alteração.";
+
+                        return RedirectToAction("Index", "Home", new { area = "" });
+                    }
+                    else
+                    {
+                        TempData["MSG_E"] = "o novo e-mail não pode ser igual ao e-mail atual.";
+                    }
                 }
 
-                TempData["MSG_S"] = "E-mail alterado com sucesso! Será enviado um e-mail de confirmação para formalizar a alteração.";
+                return View();
 
             }
             catch (Exception ex)
             {
                 throw new Exception(string.Concat(Messages.MSG_EX1, ex.Message));
             }
+        }
+
+        public IActionResult ConfirmUpdateEmail(int id)
+        {
+            _user.UpdateUserStatus(id, UserStatus.Active);
 
             return View();
         }

@@ -41,7 +41,7 @@ namespace ExpensesControl.Controllers
 
             if (ModelState.IsValid)
             {
-                User user = _user.Login(inUser.Email, inUser.Password);
+                User user = _user.Login(inUser);
 
                 if (user != null)
                 {
@@ -53,12 +53,12 @@ namespace ExpensesControl.Controllers
                     }
                     else
                     {
-                        ViewData["MSG_E"] = "Usuário inativo.";
+                        ViewData["MSG_E"] = "usuário inativo.";
                     }
                 }
                 else
                 {
-                    ViewData["MSG_E"] = "Usuário ou senha inválidos.";
+                    ViewData["MSG_E"] = "usuário ou senha inválidos.";
                 }
             }
 

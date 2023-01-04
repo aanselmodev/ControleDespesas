@@ -15,9 +15,8 @@ namespace ExpensesControl.Database
 
         }
 
+        //TODO: Criar indexes para a tabela para melhorar performance
         public DbSet<User> Users { get; set; }
         public DbSet<PasswordReset> PasswordReset { get; set; }
-
-        
     }
 }

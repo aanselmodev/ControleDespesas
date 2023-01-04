@@ -54,5 +54,8 @@ namespace ExpensesControl.Models
 
         [Display(Name = "status")]
         public UserStatus Status { get; set; }
+
+        [Display(Name = "data de cadastro")]
+        public DateTime RegistrationDate { get; set; }
     }
 }

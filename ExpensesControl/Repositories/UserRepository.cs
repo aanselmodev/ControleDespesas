@@ -38,7 +38,7 @@ namespace ExpensesControl.Repositories
 
         public void UpdatePassword(User user)
         {
-            user.Password = Cryptography.Encrypt(user.Password);
+            user.Password = Cryptography.Encrypt(user.Password, user.RegistrationDate.ToString());
 
             _db.Update(user);
             _db.Entry(user).Property(x => x.Name).IsModified = false;
@@ -61,7 +61,8 @@ namespace ExpensesControl.Repositories
 
         public void Create(User user)
         {
-            user.Password = Cryptography.Encrypt(user.Password);
+            user.RegistrationDate = DateTime.Now;
+            user.Password = Cryptography.Encrypt(user.Password, user.RegistrationDate.ToString());
 
             _db.Add(user);
             _db.SaveChanges();
@@ -211,9 +212,14 @@ namespace ExpensesControl.Repositories
             _db.SaveChanges();
         }
 
-        public User Login(string email, string password)
+        public User Login(User inUser)
         {
-            return _db.Users.Where(u => u.Email == email && u.Password == Cryptography.Encrypt(password)).FirstOrDefault();
+            User user = ReadByEmail(inUser.Email);
+
+            if (user != null)
+                return _db.Users.Where(u => u.Email == user.Email && u.Password == Cryptography.Encrypt(inUser.Password, user.RegistrationDate.ToString())).FirstOrDefault();
+
+            return null;
         }
 
         public void UpdateUserStatus(int id, UserStatus status)
