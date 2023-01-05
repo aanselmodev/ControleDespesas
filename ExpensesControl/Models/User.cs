@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ExpensesControl.Libraries;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpensesControl.Models
 {
@@ -14,6 +15,7 @@ namespace ExpensesControl.Models
         [Key]
         [Display(Name = "id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public int Id { get; set; }
         
         [Display(Name = "nome")]

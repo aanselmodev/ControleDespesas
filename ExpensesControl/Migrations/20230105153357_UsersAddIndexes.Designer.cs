@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpensesControl.Migrations
 {
     [DbContext(typeof(ExpensesControlDbContext))]
-    [Migration("20230103233958_AddUserRegistrationDate")]
-    partial class AddUserRegistrationDate
+    [Migration("20230105153357_UsersAddIndexes")]
+    partial class UsersAddIndexes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

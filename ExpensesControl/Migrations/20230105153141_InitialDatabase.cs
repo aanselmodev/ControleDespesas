@@ -14,7 +14,7 @@ namespace ExpensesControl.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(maxLength: 450, nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     ExpirationDate = table.Column<DateTime>(nullable: false)
                 },
@@ -33,9 +33,10 @@ namespace ExpensesControl.Migrations
                     LastName = table.Column<string>(nullable: false),
                     Gender = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(maxLength: 450, nullable: false),
                     Type = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
+                    Status = table.Column<int>(nullable: false),
+                    RegistrationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
