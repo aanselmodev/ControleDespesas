@@ -11,11 +11,11 @@ namespace ExpensesControl.Migrations
                 name: "PasswordReset",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(nullable: false),
                     Password = table.Column<string>(maxLength: 450, nullable: false),
-                    UserId = table.Column<int>(nullable: false),
+                    UserId = table.Column<long>(nullable: false),
                     ExpirationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -27,7 +27,7 @@ namespace ExpensesControl.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
@@ -42,6 +42,11 @@ namespace ExpensesControl.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex("Index_ID", "Users", "Id");
+            migrationBuilder.CreateIndex("Index_Name", "Users", "Name");
+            migrationBuilder.CreateIndex("Index_Email", "Users", "Email");
+            migrationBuilder.CreateIndex("Index_Status", "Users", "Status");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

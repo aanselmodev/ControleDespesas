@@ -28,12 +28,12 @@ namespace ExpensesControl.Repositories
             return _db.PasswordReset.Where(x => x.Code == code).FirstOrDefault();
         }
 
-        public PasswordReset ReadByUserId(int id)
+        public PasswordReset ReadByUserId(long id)
         {
             return _db.PasswordReset.Where(x => x.UserId == id).FirstOrDefault();
         }
 
-        public void DeleteAllByUserId(int id)
+        public void DeleteAllByUserId(long id)
         {
             IQueryable<PasswordReset> list = _db.PasswordReset.Where(x => x.UserId == id);
             _db.PasswordReset.RemoveRange(list);

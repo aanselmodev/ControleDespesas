@@ -60,7 +60,13 @@ namespace ExpensesControl.Controllers
         }
 
         [HttpGet]
-        public IActionResult ConfirmRegistration(int id)
+        public IActionResult ConfirmRegistration(long id)
+        {
+            _user.UpdateUserStatus(id, UserStatus.Active);
+
+            return View();
+        }
+        public IActionResult ConfirmUpdateEmail(long id)
         {
             _user.UpdateUserStatus(id, UserStatus.Active);
 

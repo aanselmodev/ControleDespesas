@@ -68,7 +68,7 @@ namespace ExpensesControl.Repositories
             _db.SaveChanges();
         }
 
-        public User Read(int id)
+        public User Read(long id)
         {
             return _db.Users.Find(id);
         }
@@ -205,7 +205,7 @@ namespace ExpensesControl.Repositories
             return _db.Users.Where(a => a.Email == email).FirstOrDefault();
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             User user = Read(id);
             _db.Remove(user);
@@ -222,7 +222,7 @@ namespace ExpensesControl.Repositories
             return null;
         }
 
-        public void UpdateUserStatus(int id, UserStatus status)
+        public void UpdateUserStatus(long id, UserStatus status)
         {
             User user = Read(id);
             user.Status = status;

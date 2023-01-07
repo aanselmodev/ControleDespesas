@@ -16,7 +16,7 @@ namespace ExpensesControl.Models
         [Display(Name = "id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         [Display(Name = "nome")]
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E001")]

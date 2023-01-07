@@ -9,8 +9,8 @@ namespace ExpensesControl.Repositories.Contracts
     public interface IPasswordResetRepository
     {
         public void Create(PasswordReset passwordReset);
-        public void DeleteAllByUserId(int id);
-        public PasswordReset ReadByUserId(int id);
+        public void DeleteAllByUserId(long id);
+        public PasswordReset ReadByUserId(long id);
         public PasswordReset ReadByCode(string code);
 
     }

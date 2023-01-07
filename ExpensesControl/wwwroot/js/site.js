@@ -33,6 +33,18 @@
             confirmPasswordField.attr("type", "password");
             btnShowConfirmPassword.removeClass("bi-eye-slash").addClass("bi-eye");
         }
-    })
+    });
+
+    $("#inOrdinationType").change(function () {
+        var _page = $("#page").val();
+        var _inSearchValue = $("#inSearchValue").val();
+        var _inSearchTypeUser = $("#inSearchTypeUser").val();
+        var _inOrdinationType = $("#inOrdinationType").val();
+
+        var url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        var urlParams = url + "?page=" + _page + "&inSearchValue=" + _inSearchValue + "&inSearchTypeUser=" + _inSearchTypeUser + "&inOrdinationType=" + _inOrdinationType;
+
+        window.location.href = urlParams;
+    });
 })
        

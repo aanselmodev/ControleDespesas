@@ -36,7 +36,7 @@
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">usuários</h4>
                                 <p class="card-text">gerencie os usuários cadastrados.</p>
-                                <a asp-action="Index" asp-controller="UserManagement" asp-area="Access" class="btn btn-primary">acessar</a>
+                                <a asp-action="UsersManagement" asp-controller="ControlPanel" asp-area="Access" class="btn btn-primary">acessar</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">senha</h4>
                                 <p class="card-text">altere sua senha de acesso.</p>
-                                <a asp-action="UpdatePassword" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
+                                <a asp-action="UpdatePassword" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">e-mail</h4>
                                 <p class="card-text">altere seu e-mail de cadastro.</p>
-                                <a asp-action="UpdateEmail" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
+                                <a asp-action="UpdateEmail" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">dados pessoais</h4>
                                 <p class="card-text">altere seus dados cadastrais.</p>
-                                <a asp-action="UpdateRegistrationData" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
+                                <a asp-action="UpdateRegistrationData" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">senha</h4>
                                 <p class="card-text">altere sua senha de acesso.</p>
-                                <a asp-action="UpdatePassword" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
+                                <a asp-action="UpdatePassword" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <h4 class="card-subtitle mb-2 text-muted">e-mail</h4>
                                 <p class="card-text">altere seu e-mail de cadastro.</p>
-                                <a asp-action="UpdateEmail" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
+                                <a asp-action="UpdateEmail" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">alterar</a>
                             </div>
                         </div>
                     </div>

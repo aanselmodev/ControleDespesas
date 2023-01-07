@@ -1,0 +1,118 @@
+﻿@model X.PagedList.IPagedList<User>
+
+@{
+    ViewData["Title"] = "Gerenciar Usuários";
+    var inSearchValue = TempData["inSearchValue"];
+    var inSearchTypeUser = TempData["inSearchTypeUser"];
+    var inOrdinationType = TempData["inOrdinationType"];
+}
+
+<header class="d-flex flex-wrap align-content-center justify-content-md-between py-3 mb-4">
+    <div class="container">
+        <a asp-action="Index" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">voltar <i class="bi bi-arrow-bar-left"></i></a>
+    </div>
+</header>
+
+<div class="container" align="center">
+    <div class="p text-center">
+        <i class="bi bi-person-gear default-img-icon"></i>
+        <h3>usuários</h3>
+    </div>
+    <br />
+    <br />
+
+    <div class="container row justify-content-center w-75">
+        <form method="post">
+            <div class="row">
+                <div class="col-2">
+                    <select class="form-select" id="inSearchTypeUser" name="inSearchTypeUser" asp-for="@inSearchTypeUser" asp-items="@Html.GetEnumSelectList<SearchTypeUser>()"></select>
+                </div>
+                <div class="input-group mb-3 col">
+                    <input type="text" class="form-control" id="inSearchValue" name="inSearchValue" value="@inSearchValue" placeholder="digite sua pesquisa aqui">
+                    <button class="btn btn-secondary bi bi-search" asp-action="UsersManagement"></button>
+                </div>
+                <div class="col-3">
+                    <div align="right">
+                        <select class="form-select" id="inOrdinationType" name="inOrdinationType" asp-for="@inOrdinationType" asp-items="@Html.GetEnumSelectList<OrdinationType>()"></select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            @{ await Html.RenderPartialAsync("~/Views/Shared/_Alert.cshtml"); }
+        </div>
+    </div>
+
+    @{
+        if (Model.Count > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                            <tr>
+                                <th scope="col">@Html.DisplayNameFor(model => model.First().Id)</th>
+                                <th scope="col">nome</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.First().Email)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.First().Type)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.First().RegistrationDate)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.First().Status)</th>
+                                <th scope="col"></th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (User user in Model)
+                        {
+                        <tr>
+                            <th scope="row">@user.Id</th>
+                            <td scope="row">@string.Concat(user.Name, " ", user.LastName)</td>
+                            <td scope="row">@user.Email</td>
+                            <td scope="row">@user.Type</td>
+                            <td scope="row">@user.RegistrationDate.ToString("dd/MM/yyyy")</td>
+                            <td scope="row">
+                                @{
+                                    switch (user.Status)
+                                    {
+                                        case ExpensesControl.Libraries.UserStatus.Inactive:
+                                            <span class="p-1 text-secondary">inativo</span>
+                                            break;
+                                        case ExpensesControl.Libraries.UserStatus.Active:
+                                            <span class="p-1 text-success">ativo</span>
+                                            break;
+                                        case ExpensesControl.Libraries.UserStatus.Pending:
+                                            <span class="p-1 text-warning">pendente</span>
+                                            break;
+                                        case ExpensesControl.Libraries.UserStatus.Blocked:
+                                            <span class="p-1 text-danger">bloqueado</span>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            </td>
+                            <td scope="row" align="right">
+                                <a asp-action="UpdateRegistrationData" asp-route-id="@user.Id" class="btn btn-secondary bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="alterar dados cadastrais"></a>
+                                <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger bi bi-person-x" data-bs-toggle="tooltip" data-bs-placement="top" title="excluir usuário"></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page, inSearchValue = inSearchValue, inSearchTypeUser = inSearchTypeUser, inOrdinationType = inOrdinationType }));
+        }
+        else
+        {
+            <span>nenhum usuário encontrado!</span>
+        }
+    }
+</div>
+
+
+
+

@@ -12,7 +12,7 @@ namespace ExpensesControl.Models
     {
         [Display(Name = "Id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Messages), ErrorMessageResourceName = "MSG_E001")]
         [Display(Name = "Código")]
@@ -33,7 +33,7 @@ namespace ExpensesControl.Models
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Id do Usuário")]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
         [Display(Name = "Data de Expiração")]
         public DateTime ExpirationDate { get; set; }

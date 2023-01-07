@@ -9,7 +9,7 @@
 
         @if (Model.Type == UserType.System)
         {
-            <a asp-action="Index" asp-controller="UserManagement" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">voltar <i class="bi bi-arrow-bar-left"></i></a>
+            <a asp-action="Index" asp-controller="ControlPanel" asp-area="Access" asp-route-id="@_login.GetUser().Id" class="btn btn-primary">voltar <i class="bi bi-arrow-bar-left"></i></a>
         }
         else
         {

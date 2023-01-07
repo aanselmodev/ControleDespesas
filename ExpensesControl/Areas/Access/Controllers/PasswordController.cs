@@ -75,7 +75,7 @@ namespace ExpensesControl.Areas.Access.Controllers
         }
 
         [HttpPost]
-        public IActionResult GenerateNewPassword([FromForm] PasswordReset passwordReset, int id)
+        public IActionResult GenerateNewPassword([FromForm] PasswordReset passwordReset, long id)
         {
             if (ModelState.IsValid)
             {
